@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bonfire Battle</title> 
+  <style>
+    @font-face {
+      font-family: 'OptimusPrincepsSemiBold';
+      src: url('fonts/OptimusPrincepsSemiBold.ttf') format('truetype');
+    }
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #0f0f0f;
+}
+
+  body {
+  background-color: #0f0f0f; /* dunkles Grau, wirkt wie Dark Souls-Stimmung */
+  color: #f1f1f1;
+  font-family: 'OptimusPrinceps','Georgia', serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+
+    header {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  background: url('/Bilder/WebseitenBanner.png') no-repeat center center;
+  background-size: 100% 100%;
+  width: 100%;
+  height: 180px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border-bottom: 3px solid #3d2c1e;
+  box-shadow: 0 0 30px rgba(208, 168, 92, 0.2);
+  transition: opacity 0.4s ease, transform 0.4s ease, filter 0.4s ease;
+}
+
+    header.scrolled {
+  opacity: 0.6;
+  filter: blur(0.5px);
+  transform: scale(0.99);
+}
+
+header.scrolled:hover {
+  opacity: 1;
+  filter: none;
+  transform: scale(1);
+}
+
+    header::after {
+      content: "";
+      display: none; /* Bonfire-Symbol wird deaktiviert */
+    }
+
+    header h1 {
+    font-family: 'OptimusPrincepsSemiBold';
+    font-size: 4rem; 
+    color: #d0a85c; /* Dark Souls Gold-Ton */
+    
+    text-shadow: 2px 2px 10px #000;
+    z-index: 1;
+    margin: 0;
+  }
+  header h2 {
+    font-family: 'OptimusPrincepsSemiBold';
+    text-shadow: 2px 2px 10px #000;
+    z-index: 1;
+    margin: 0;
+  }
+
+    table {
+      width: 90%;
+      max-width: 1000px;
+      border-collapse: collapse;
+      margin-top: 5rem;
+      background-color: rgba(0, 0, 0, 0.8);
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    }
+
+    th, td {
+      border: 1px solid #444;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    th {
+      background-color: #222;
+      color: #d0a85c;
+      font-size: 1.1rem;
+    }
+
+    tr:nth-child(even) {
+      background-color: #1a1a1a;
+    }
+
+    tr:nth-child(odd) {
+      background-color: #151515;
+    }
+
+    .status-alive {
+      color: #6fcf97;
+      font-weight: bold;
+    }
+
+    .status-dead {
+      color: #e63946;
+      font-weight: bold;
+    }
+
+
+.header-buttons {
+  margin-top: 1rem;
+  display: flex;
+  gap: 1rem;
+  z-index: 1;
+}
+
+.header-buttons a {
+  text-decoration: none;
+  padding: 0.4rem 1rem;
+  border: 2px solid #d0a85c;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #d0a85c;
+  font-family: 'OptimusPrinceps', serif;
+  font-size: 1rem;
+  text-shadow: 1px 1px 3px #000;
+  transition: all 0.2s ease-in-out;
+}
+
+.header-buttons a:hover {
+  background-color: #d0a85c;
+  color: #000;
+  box-shadow: 0 0 10px #d0a85c;
+}
+
+.content {
+  max-width: 100%;
+  margin-top: 2rem;
+  padding: 2rem;
+  background-color: rgba(0, 0, 0, 0.75);
+  box-shadow: 0 0 20px rgba(0,0,0,0.6);
+  font-size: 1.1rem;
+  line-height: 1.6;
+  border-bottom: 3px solid #3d2c1e;
+}
+
+
+
+.content h2 {
+  color: #d0a85c;
+  margin-bottom: 1rem;
+}
+
+.content p {
+  color: #eee;
+}
+
+.back-button {
+  margin-top: 2rem;
+  display: inline-block;
+  text-decoration: none;
+  color: #d0a85c;
+  border: 2px solid #d0a85c;
+  padding: 0.5rem 1rem;
+  background-color: rgba(0, 0, 0, 0.5);
+  transition: all 0.2s ease-in-out;
+  font-family: 'OptimusPrinceps', serif;
+}
+
+.back-button:hover {
+  background-color: #d0a85c;
+  color: #000;
+  box-shadow: 0 0 10px #d0a85c;
+}
+
+  </style>
+</head>
+<body>
+ 
+  <header>
+    <h1>Bonfire Battle </h1>
+    <h2>Dark Souls I -02.06.- 15.06.2025 </h2>
+    <div class="header-buttons">
+      <a href="index.html">Ablauf</a>
+      <a href="https://www.youtube.com/@Papierbini" target="_blank">YouTube</a>
+      <a href="#regelwerk">Regelwerk</a>
+    </div>
+  </header>
+
+   <div class="content">
+    <h2>Regelwerk</h2>
+    <p>
+      Jeder Spieler startet einen No-Death-Run in Dark Souls I. Ziel ist es, möglichst viele Punkte zu sammeln, ohne zu sterben.
+      <br><br>
+      <strong>Allgemein</strong><br>
+      - das Event findet vom 02.06.-15.06. statt<br>
+      - wir starten mit Dark Souls I<br>
+      - Der Run endet mit dem Tod<br>
+      - NG+ ist verboten<br>
+      - Glitches und  Skips sind verboten (Einzige Ausnahme Stair Skip in Anor Londo)<br>
+      - NPCs beschwören ist verboten<br>
+      - Bonfire zum reinen Zweck des Farmens zu nutzen ist verboten<br>
+      - Black-Knight-Waffen sind verboten<br>
+      - Der Run muss im Offline-Modus stattfinden<br>
+      - Bei Punkte-Gleichstand gewinnt die Person, die am schnellsten diesen Punktestand erreicht hat<br>
+      - Tode, die durch die Story erzwungen werden, zählen nicht als Tode<br>
+      - Quitouts bei Bossen sind verboten. Heimkehrknochen sind aber erlaubt<br>
+      - der finale Run sollte sobald bekannt, aber gerne ein paar Tage zuvor, in den Kalender eingetragen werden<br>
+      - während des finalen Runs, sind Hilfen durch den Chat jederzeit erlaubt. Ebenso dürft Ihr Guides zu Wegen oder Bossen nutzen. Bitte aber nur wenn ihr anders nicht weiter wisst - übertreibt es bitte nicht 😉<br>
+       <br><br>
+
+      <strong>Punkte Vergabe</strong><br>
+      - Jeder Area-Boss gibt 5 Punkte.<br>
+      - Jeder Mini-Boss gibt 3 Punkte.<br>
+      - Mehrmaliges Töten des gleichen Miniboss-Typs gibt auch mehrfach Punkte. Minibosse, die respawnen, geben nur einmalig Punkte.<br>
+       <br><br>
+
+      <strong>Spielspezifische Regeln</strong><br>
+      Folgende Cheeses sind ausdrücklich erlaubt: <br>
+      - Taurus Demon Cheese<br>
+      - Giant Cats Tree Cheese<br>
+         <br><br>
+
+      <strong>folgende Cheeses sind ausdrücklich verboten</strong>
+      - Capra Demon Cheese <br>
+      - Bed of Chaos Cheese <br>
+      - Chaos Witch Quelaag Cheese <br>
+    </p>
+
+    <a class="back-button" href="index.html">← Zurück zur Übersicht</a>
+  </div>
+
+  <script>
+  const header = document.querySelector("header");
+
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 10) {
+      header.classList.add("scrolled");
+    } else {
+      header.classList.remove("scrolled");
+    }
+  });
+</script>
+</body>
+</html>
