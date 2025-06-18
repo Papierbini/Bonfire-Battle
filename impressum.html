@@ -5,71 +5,132 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Impressum – Bonfire Battle</title>
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #121212;
-      color: #f1f1f1;
-      padding: 2rem;
+    @font-face {
+      font-family: 'OptimusPrincepsSemiBold';
+      src: url('fonts/OptimusPrincepsSemiBold.ttf') format('truetype');
     }
-    h1 {
+    body {
+      background-color: #000;
+      color: #f1f1f1;
+      font-family: 'OptimusPrinceps','Georgia', serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+    }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      background: url('/Bilder/WebseitenBanner.png') no-repeat center center;
+      background-size: 100% 100%;
+      width: 100%;
+      height: 180px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border-bottom: 3px solid #3d2c1e;
+      box-shadow: 0 0 30px rgba(208, 168, 92, 0.2);
+    }
+    header h1 {
+      font-family: 'OptimusPrincepsSemiBold';
+      font-size: 4rem;
       color: #d0a85c;
+      text-shadow: 2px 2px 10px #000;
+      margin: 0;
+    }
+    .content {
+      max-width: 1000px;
+      width: 90%;
+      margin-top: 3rem;
+      padding: 3rem 2rem;
+      background-color: rgba(0, 0, 0, 0.75);
+      box-shadow: 0 0 20px rgba(0,0,0,0.6);
+      font-size: 1.1rem;
+      line-height: 1.6;
+      border-bottom: 3px solid #3d2c1e;
+      border-radius: 5px;
+    }
+    .content h2 {
+      color: #d0a85c;
+      text-align: center;
+      margin-bottom: 2rem;
+      text-shadow: 0 0 10px #d0a85c;
     }
     a {
       color: #d0a85c;
       text-decoration: none;
-      border: 1px solid #d0a85c;
-      padding: 0.3rem 0.7rem;
-      display: inline-block;
-      margin-top: 2rem;
     }
     a:hover {
+      text-decoration: underline;
+    }
+    .back-button {
+      margin-top: 2rem;
+      display: inline-block;
+      text-decoration: none;
+      color: #d0a85c;
+      border: 2px solid #d0a85c;
+      padding: 0.5rem 1rem;
+      background-color: rgba(0, 0, 0, 0.5);
+      transition: all 0.2s ease-in-out;
+      font-family: 'OptimusPrinceps', serif;
+    }
+    .back-button:hover {
       background-color: #d0a85c;
-      color: black;
+      color: #000;
+      box-shadow: 0 0 10px #d0a85c;
     }
   </style>
 </head>
+
 <body>
+  <header>
+    <h1>Bonfire Battle</h1>
+  </header>
 
- <h1>Impressum</h1>
+  <div class="content">
+    <h2>Impressum</h2>
 
-<p><strong>Angaben gemäß § 5 TMG:</strong></p>
-<p>
-  Papierbini<br>
-  Melanie Göbel & Marin Belz GbR<br> <!-- falls GbR gewünscht -->
-  Postfach 160114<br>
-  06038 Halle (Saale)<br>
-  Deutschland
-</p>
+    <p><strong>Angaben gemäß § 5 TMG:</strong></p>
+    <p>
+      Bonfire Battle GbR<br>
+      Melanie Göbel & Marin Belz<br>
+      Postfach 160114<br>
+      06038 Halle (Saale)<br>
+      Deutschland
+    </p>
 
-<p><strong>Kontakt:</strong><br>
-  
-  E-Mail: papierbini@gmx.de
-</p>
+    <p><strong>Kontakt:</strong><br>
+      E-Mail: papierbini@gmx.de
+    </p>
 
-<p><strong>Vertreten durch:</strong><br>
-  Melanie Göbel, Marin Belz
-</p>
+    <p><strong>Vertreten durch:</strong><br>
+      Melanie Göbel, Marin Belz
+    </p>
 
-<p><strong>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV:</strong><br>
-  Marin Belz<br>
-  Postfach 160114<br>
-  06038 Halle (Saale)<br>
-</p>
+    <p><strong>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV:</strong><br>
+      Marin Belz<br>
+      Postfach 160114<br>
+      06038 Halle (Saale)<br>
+    </p>
 
-<p><strong>Haftungsausschluss:</strong><br>
-  Trotz sorgfältiger inhaltlicher Kontrolle übernehmen wir keine Haftung für die Inhalte externer Links. Für den Inhalt der verlinkten Seiten sind ausschließlich deren Betreiber verantwortlich.
-</p>
+    <hr>
 
-<p><strong>Plattform der EU-Kommission zur Online-Streitbeilegung:</strong><br>
-  <a href="https://ec.europa.eu/consumers/odr/" target="_blank">https://ec.europa.eu/consumers/odr/</a><br>
-  Wir sind nicht verpflichtet und nicht bereit, an einem Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.
-</p>
- 
+    <p><strong>Haftungsausschluss:</strong><br>
+      Trotz sorgfältiger inhaltlicher Kontrolle übernehmen wir keine Haftung für die Inhalte externer Links. Für den Inhalt der verlinkten Seiten sind ausschließlich deren Betreiber verantwortlich.
+    </p>
 
- 
- 
+    <p><strong>Plattform der EU-Kommission zur Online-Streitbeilegung:</strong><br>
+      <a href="https://ec.europa.eu/consumers/odr/" target="_blank">https://ec.europa.eu/consumers/odr/</a><br>
+      Wir sind nicht verpflichtet und nicht bereit, an einem Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.
+    </p>
 
-  <a href="index.html">← Zurück zur Startseite</a>
+    <a class="back-button" href="index.html">← Zurück zur Startseite</a>
+  </div>
 </body>
 </html>
