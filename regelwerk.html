@@ -234,6 +234,120 @@ header.scrolled:hover {
     text-align: center;
   }
 }
+
+/* Navigation Buttons schöner machen */
+.nav-links {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.nav-links a {
+  color: #d0a85c;
+  margin: 0 1rem;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+  text-shadow: 1px 1px 5px #000;
+}
+
+.nav-links a:hover {
+  color: #fff;
+  text-shadow: 0 0 10px #d0a85c, 0 0 20px #d0a85c, 0 0 30px #d0a85c;
+}
+
+/* Die Überschrift für jedes Game hervorheben */
+@keyframes intenseFlicker {
+  0% { 
+    text-shadow: 0 0 10px #d0a85c, 0 0 20px #d0a85c; 
+    transform: scale(1);
+  }
+  30% { 
+    text-shadow: 0 0 30px #ffae42, 0 0 60px #ffae42;
+    transform: scale(1.02);
+  }
+  60% { 
+    text-shadow: 0 0 15px #d0a85c;
+    transform: scale(1);
+  }
+  100% { 
+    text-shadow: 0 0 10px #d0a85c;
+    transform: scale(1);
+  }
+}
+
+
+.game-header {
+  transition: all 0.5s ease;
+  text-align: center;
+  font-size: 2rem;
+  color: #ffddb0; /* heller, glühender Farbton */
+  border: 2px solid #d0a85c;
+  padding: 1rem;
+  margin: 2rem 0 1.5rem 0;
+  box-shadow: 0 0 20px rgba(208, 168, 92, 0.7), 0 0 40px rgba(208, 168, 92, 0.3);
+
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.5);
+  animation: intenseFlicker 4s infinite;
+}
+.game-header:hover {
+  color: #ff4500;
+  border-color: #ff4500;
+  text-shadow: 0 0 10px #ff4500, 0 0 20px #ff4500, 0 0 40px #ff4500;
+  box-shadow: 0 0 40px rgba(255, 69, 0, 0.9);
+  transform: scale(1.03);
+  transition: all 0.3s ease;
+  cursor: default;
+}
+
+/* Dark Souls 1 - wie bisher */
+.ds1 {
+  color: #ffddb0;
+  border-color: #d0a85c;
+  box-shadow: 0 0 20px rgba(208, 168, 92, 0.7), 0 0 40px rgba(208, 168, 92, 0.3);
+}
+
+/* Dark Souls 2 - etwas wärmer, mehr Orange */
+.ds2 {
+  color: #ffe0b0;
+  border-color: #e6983b;
+  box-shadow: 0 0 20px rgba(230, 152, 59, 0.7), 0 0 40px rgba(230, 152, 59, 0.3);
+}
+
+/* Dark Souls 3 - mehr Glut, dunkleres Rot */
+.ds3 {
+  color: #ffd5d0;
+  border-color: #b0321e;
+  box-shadow: 0 0 20px rgba(176, 50, 30, 0.7), 0 0 40px rgba(176, 50, 30, 0.3);
+}
+.ds1:hover {
+  color: #ff6a00;
+  border-color: #ff6a00;
+  text-shadow: 0 0 10px #ff6a00, 0 0 20px #ff6a00, 0 0 40px #ff6a00;
+  box-shadow: 0 0 40px rgba(255, 106, 0, 0.9);
+  transform: scale(1.03);
+}
+
+.ds2:hover {
+  color: #ff3c00;
+  border-color: #ff3c00;
+  text-shadow: 0 0 10px #ff3c00, 0 0 20px #ff3c00, 0 0 40px #ff3c00;
+  box-shadow: 0 0 40px rgba(255, 60, 0, 0.9);
+  transform: scale(1.03);
+}
+
+.ds3:hover {
+  color: #cc1100;
+  border-color: #cc1100;
+  text-shadow: 0 0 10px #cc1100, 0 0 20px #cc1100, 0 0 40px #cc1100;
+  box-shadow: 0 0 40px rgba(204, 17, 0, 0.9);
+  transform: scale(1.03);
+}
+
+
+
+
   </style>
 </head>
 <body>
@@ -249,7 +363,18 @@ header.scrolled:hover {
   </header>
 
    <div class="content">
-    <h2>Regelwerk</h2>
+  
+
+  <!-- Navigation -->
+  <div class="nav-links">
+    <a href="#ds1">Dark Souls 1</a> |
+    <a href="#ds2">Dark Souls 2</a> |
+    <a href="#ds3">Dark Souls 3</a>
+  </div>
+
+  <!-- Dark Souls 1 -->
+  <div class="game-section" id="ds1">
+    <div class="game-header ds1">Dark Souls 1</div>
     <p>
       Jeder Spieler startet einen No-Death-Run in Dark Souls I. Ziel ist es, möglichst viele Punkte zu sammeln, ohne zu sterben.
       <br><br>
@@ -258,7 +383,7 @@ header.scrolled:hover {
       - wir starten mit Dark Souls I<br>
       - Der Run endet mit dem Tod<br>
       - NG+ ist verboten<br>
-      - Glitches und  Skips sind verboten (Einzige Ausnahme Stair Skip in Anor Londo)<br>
+      - Glitches und Skips sind verboten (Einzige Ausnahme Stair Skip in Anor Londo)<br>
       - NPCs beschwören ist verboten<br>
       - Bonfire zum reinen Zweck des Farmens zu nutzen ist verboten<br>
       - Black-Knight-Waffen sind verboten<br>
@@ -266,30 +391,78 @@ header.scrolled:hover {
       - Bei Punkte-Gleichstand gewinnt die Person, die am schnellsten diesen Punktestand erreicht hat<br>
       - Tode, die durch die Story erzwungen werden, zählen nicht als Tode<br>
       - Quitouts bei Bossen sind verboten. Heimkehrknochen sind aber erlaubt<br>
-      - der finale Run sollte sobald bekannt, aber gerne ein paar Tage zuvor, in den Kalender eingetragen werden<br>
-      - während des finalen Runs, sind Hilfen durch den Chat jederzeit erlaubt. Ebenso dürft Ihr Guides zu Wegen oder Bossen nutzen. Bitte aber nur wenn ihr anders nicht weiter wisst - übertreibt es bitte nicht 😉<br>
-       <br><br>
+      - Der finale Run sollte vorher im Kalender eingetragen werden<br>
+      - Hilfen durch Chat & Guides erlaubt bei Bedarf<br><br>
 
       <strong>Punkte Vergabe</strong><br>
-      - Jeder Area-Boss gibt 5 Punkte.<br>
-      - Jeder Mini-Boss gibt 3 Punkte.<br>
-      - Mehrmaliges Töten des gleichen Miniboss-Typs gibt auch mehrfach Punkte. Minibosse, die respawnen, geben nur einmalig Punkte.<br>
-       <br><br>
+      - Area-Boss = 5 Punkte<br>
+      - Mini-Boss = 3 Punkte<br>
+      - Respawnende Minibosse zählen nur einmal<br><br>
 
-      <strong>Spielspezifische Regeln</strong><br>
-      Folgende Cheeses sind ausdrücklich erlaubt: <br>
+      <strong>Erlaubte Cheeses</strong><br>
       - Taurus Demon Cheese<br>
-      - Giant Cats Tree Cheese<br>
-         <br><br>
+      - Giant Cats Tree Cheese<br><br>
 
-      <strong>folgende Cheeses sind ausdrücklich verboten</strong><br>
-      - Capra Demon Cheese <br>
-      - Bed of Chaos Cheese <br>
-      - Chaos Witch Quelaag Cheese <br>
+      <strong>Verbotene Cheeses</strong><br>
+      - Capra Demon Cheese<br>
+      - Bed of Chaos Cheese<br>
+      - Chaos Witch Quelaag Cheese
     </p>
-
-    <a class="back-button" href="index.html">← Zurück zur Übersicht</a>
   </div>
+
+  <!-- Dark Souls 2 -->
+  <div class="game-section" id="ds2">
+    <div class="game-header ds2">Dark Souls 2</div>
+    <p>
+      <strong>Allgemein</strong><br>
+      - das Event findet vom 28-07.-03.08 statt<br>
+      - Der Run endet mit dem Tod<br>
+      - NG+ verboten<br>
+      - Glitches und Skips verboten<br>
+      - NPCs beschwören ist verboten<br>
+      - Nutzung vom Asketenleuchtfeuer ist verboten<br>
+      - Bei Punktegleichstand zählt die schnellere Zeit<br>
+      - Bonfire zum reinen Zweck des Farmens zu nutzen ist verboten<br>
+      - Der Run muss im Offline-Modus stattfinden.<br>
+      - Der „Company of Champions“ Eid ist verboten<br>
+      - Bei Punkte-Gleichstand gewinnt die Person, die am schnellsten diesen Punktestand erreicht hat.<br>
+      - Quitouts und Heimatknochen bei Bossen sind verboten (außer Bug etc.)<br>
+      - Der offizielle Run ist bis zum Tod der einzige Spielstand, der gespielt werden darf. Das Nutzen von Guides und Wikis ist während des finalen Runs erlaubt, bitte übertreibt es aber nicht mit der Häufigkeit!<br>
+      - Coaching durch andere (z. B. via Discord-Call) ist während des offiziellen Runs verboten.<br>
+      - Mit dem Chat darf das Vorgehen jederzeit besprochen werden.<br>
+      - ALLE Cheeses sind verboten - beabsichtigte Mechaniken dürfen natürlich genutzt werden (z.B. Drachenreiter runterfallen lassen) <br><br>
+
+      <strong>Punkte Vergabe (vorläufig)</strong><br>
+      - Jeder Boss bringt 5 Punkte. <br>
+      - Rechtliche Punktevergabe: siehe Sheets<br><br>
+
+      <strong>Folgende Waffen sind verboten:</strong><br>
+      - Crypt Blacksword<br>
+      - Santier‘s Spear<br>
+      - Avelyn<br>
+      - Chaos Blade<br>
+      - Heide Knight Sword<br>
+      - Mace<br><br>
+
+      <strong>Weitere waffenspezifische Regeln:</strong><br>
+      - das Kaufen und Nutzen von Giftpfeilen ist verboten <br>
+      - Das Kaufen aller weiterer Elementarpfeile ist verboten <br>
+      - Standardpfeile (Eisenpfeile etc) haben keine Beschränkung <br>
+    </p>
+  </div>
+
+  <!-- Dark Souls 3 -->
+  <div class="game-section" id="ds3">
+    <div class="game-header ds3">Dark Souls 3</div>
+    <p>
+      Folgt...
+    </p>
+  </div>
+
+  <a class="back-button" href="index.html">← Zurück zur Übersicht</a>
+</div>
+
+
 
   <script>
   const header = document.querySelector("header");
