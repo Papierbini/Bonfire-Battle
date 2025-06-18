@@ -256,6 +256,83 @@ header.scrolled:hover {
         width: 800px;
       }
 }
+/* Dark Souls Tabellen-Spaltenüberschrift */
+
+/* Für DS1 Tabellenkopf */
+th.ds1, th.ds2, th.ds3 {
+  font-weight: bold;
+  font-size: 1.1rem;
+  padding: 1rem;
+  transition: all 0.3s ease;
+  text-shadow: 1px 1px 3px #000;
+  background-color: #222;
+  border: 1px solid #444;
+}
+
+
+
+th.ds1 {
+  color: #ffd86b;
+  text-shadow: 0 0 5px #d0a85c, 0 0 10px #d0a85c; /* dezenter Glow nur auf Text */
+  box-shadow: inset 0 0 5px rgba(208, 168, 92, 0.5);
+  animation: intenseFlickerDS1 4s infinite;
+}
+
+@keyframes intenseFlickerDS1 {
+  0% { text-shadow: 0 0 5px #d0a85c, 0 0 10px #d0a85c; transform: scale(1); }
+  30% { text-shadow: 0 0 10px #ffae42, 0 0 20px #ffae42; transform: scale(1.02); }
+  60% { text-shadow: 0 0 7px #d0a85c, 0 0 15px #d0a85c; transform: scale(1); }
+  100% { text-shadow: 0 0 5px #d0a85c, 0 0 10px #d0a85c; transform: scale(1); }
+}
+
+th.ds1:hover {
+  color: #ff9e00;
+  text-shadow: 0 0 10px #ff9e00, 0 0 20px #ff9e00;
+  box-shadow: inset 0 0 8px rgba(255, 158, 0, 0.7);
+}
+
+
+th.ds2 {
+  color: #ff9540;
+  text-shadow: 0 0 5px #e6983b, 0 0 10px #e6983b;
+  box-shadow: inset 0 0 5px rgba(230, 152, 59, 0.5);
+  animation: intenseFlickerDS2 4s infinite;
+}
+
+@keyframes intenseFlickerDS2 {
+  0% { text-shadow: 0 0 5px #e6983b, 0 0 10px #e6983b; transform: scale(1); }
+  30% { text-shadow: 0 0 10px #ff7020, 0 0 20px #ff7020; transform: scale(1.02); }
+  60% { text-shadow: 0 0 7px #e6983b, 0 0 15px #e6983b; transform: scale(1); }
+  100% { text-shadow: 0 0 5px #e6983b, 0 0 10px #e6983b; transform: scale(1); }
+}
+
+th.ds2:hover {
+  color: #ff5500;
+  text-shadow: 0 0 10px #ff5500, 0 0 20px #ff5500;
+  box-shadow: inset 0 0 8px rgba(255, 85, 0, 0.7);
+}
+
+
+th.ds3 {
+  color: #e03a3a;
+  text-shadow: 0 0 5px #b0321e, 0 0 10px #b0321e;
+  box-shadow: inset 0 0 5px rgba(176, 50, 30, 0.5);
+  animation: intenseFlickerDS3 4s infinite;
+}
+
+@keyframes intenseFlickerDS3 {
+  0% { text-shadow: 0 0 5px #b0321e, 0 0 10px #b0321e; transform: scale(1); }
+  30% { text-shadow: 0 0 10px #ff4e42, 0 0 20px #ff4e42; transform: scale(1.02); }
+  60% { text-shadow: 0 0 7px #b0321e, 0 0 15px #b0321e; transform: scale(1); }
+  100% { text-shadow: 0 0 5px #b0321e, 0 0 10px #b0321e; transform: scale(1); }
+}
+
+th.ds3:hover {
+  color: #cc1100;
+  text-shadow: 0 0 10px #cc1100, 0 0 20px #cc1100;
+  box-shadow: inset 0 0 8px rgba(204, 17, 0, 0.7);
+}
+
 
 
 
@@ -276,16 +353,16 @@ header.scrolled:hover {
 
 <div class="table-wrapper">
   <table>
-    <thead>
-      <tr>
-        <th>Teilnehmer*innen</th>
-        <th>Status</th>
-        <th>Dark Souls 1</th>
-        <th>Dark Souls 2</th>
-        <th>Dark Souls 3</th>
-        <th>Gesamtpunkte</th>
-      </tr>
-    </thead>
+<thead>
+  <tr>
+    <th>Teilnehmer*innen</th>
+    <th>Status</th>
+    <th class="ds1">Dark Souls 1</th>
+    <th class="ds2">Dark Souls 2</th>
+    <th class="ds3">Dark Souls 3</th>
+    <th>Gesamtpunkte</th>
+  </tr>
+</thead>
     <tbody>
       <tr>
         <td>
