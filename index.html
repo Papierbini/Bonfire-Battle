@@ -730,23 +730,33 @@ th.ds3:hover {
     }
   });
 </script>
+
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-  // alle Zeilen im Tabellen-Body selektieren
-  const rows = document.querySelectorAll('.table-wrapper table tbody tr');
+  const tbody = document.querySelector('.table-wrapper table tbody');
+  const rows = Array.from(tbody.querySelectorAll('tr'));
+
   rows.forEach(row => {
-    // die Zellen in diesem Row-Element auslesen
     const cells = row.querySelectorAll('td');
-    // Spalten-Indizes: 2 = DS1, 3 = DS2, 4 = DS3, 5 = Gesamtpunkte
     const ds1 = parseInt(cells[2].textContent, 10) || 0;
     const ds2 = parseInt(cells[3].textContent, 10) || 0;
     const ds3 = parseInt(cells[4].textContent, 10) || 0;
     const total = ds1 + ds2 + ds3;
-    // Gesamtpunkte-Zelle aktualisieren
     cells[5].textContent = total;
   });
+
+  // sortieren nach Gesamtpunkte (absteigend)
+  rows.sort((a, b) => {
+    const pointsA = parseInt(a.querySelectorAll('td')[5].textContent, 10) || 0;
+    const pointsB = parseInt(b.querySelectorAll('td')[5].textContent, 10) || 0;
+    return pointsB - pointsA;
+  });
+
+  // sortierte Reihen wieder einfügen
+  rows.forEach(row => tbody.appendChild(row));
 });
 </script>
+
   
 <footer style="margin-top: 4rem; text-align: center;">
   <a href="impressum.html" style="color: #d0a85c;">Impressum</a>
@@ -758,6 +768,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 </html>
+
 
 
 
