@@ -29,14 +29,12 @@ html, body { overflow-x: auto; }  /* Seite bleibt in der Breite stabil */
       overflow-x: auto;
     }
 
-    header {
+   header {
   position: sticky;
   top: 0;
   z-index: 999;
-   background: url('Bilder/WebseitenBanner.png') no-repeat center center;
-  background-size: cover;          /* schöner als 100% 100% */
-  background-position: center;
-  background-color: #0f0f0f; 
+  background: url('/Bilder/WebseitenBanner.png') no-repeat center center;
+  background-size: 100% 100%;
   width: 100%;
   height: 180px;
 
@@ -51,6 +49,7 @@ html, body { overflow-x: auto; }  /* Seite bleibt in der Breite stabil */
   box-shadow: 0 0 30px rgba(208, 168, 92, 0.2);
   transition: opacity 0.4s ease, transform 0.4s ease, filter 0.4s ease;
 }
+    
     header.scrolled {
   opacity: 0.6;
   filter: blur(0.5px);
@@ -860,6 +859,7 @@ document.getElementById('last-updated').textContent =
 
 
 </html>
+
 
 
 
