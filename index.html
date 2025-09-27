@@ -362,16 +362,36 @@ td.status-alive::after,
 td.status-dead::after,
 td.status-skipped::after {
   display: inline-block;
-  margin-left: .5rem;
-  padding: .1rem .45rem;
-  font-size: .75rem;
-  border-radius: .4rem;
+  margin-left: .6rem;
+  padding: .25rem .7rem;       /* Größer: mehr Innenabstand */
+  font-size: .9rem;            /* Schrift etwas größer */
+  font-weight: bold;           /* dickerer Text */
+  border-radius: .5rem;        /* mehr Rundung */
   vertical-align: middle;
-  opacity: .9;
+  opacity: 1;                  /* volle Sichtbarkeit */
 }
-td.status-alive::after   { content:"alive";   background:#163d2c; color:#6fcf97; border:1px solid #235a42; }
-td.status-dead::after    { content:"dead";    background:#451a1a; color:#e63946; border:1px solid #6d2424; }
-td.status-skipped::after { content:"skipped"; background:#3f3717; color:#f2c94c; border:1px solid #6a5f24; }
+
+td.status-alive::after   { 
+  content:"ALIVE"; 
+  background:#163d2c; 
+  color:#6fcf97; 
+  border:1px solid #235a42; 
+}
+
+td.status-dead::after    { 
+  content:"DEAD"; 
+  background:#451a1a; 
+  color:#e63946; 
+  border:1px solid #6d2424; 
+}
+
+td.status-skipped::after { 
+  content:"SKIPPED"; 
+  background:#3f3717; 
+  color:#f2c94c; 
+  border:1px solid #6a5f24; 
+}
+
 
 /* Top-3 Medaillen vor dem Namen */
 tr.rank-1 .teilnehmer-link .text::before { content: "🥇 "; }
@@ -839,6 +859,7 @@ document.getElementById('last-updated').textContent =
 
 
 </html>
+
 
 
 
