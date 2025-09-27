@@ -629,6 +629,27 @@
     </table>
   </div>
 
+
+  <script>
+  // Setzt die CSS-Variable --header-h auf die tatsächliche Header-Höhe
+  function setHeaderVar() {
+    const headerEl = document.querySelector('header');
+    if (!headerEl) return;
+    const h = headerEl.getBoundingClientRect().height;
+    document.documentElement.style.setProperty('--header-h', h + 'px');
+  }
+
+  // Möglichst früh & oft setzen (Mobile-Browser ändern die Höhe nachträglich)
+  document.addEventListener('DOMContentLoaded', setHeaderVar);
+  window.addEventListener('load', setHeaderVar);
+  window.addEventListener('resize', setHeaderVar);
+
+  // Nachkorrigieren, falls Fonts/Banner später laden und die Höhe ändern
+  setTimeout(setHeaderVar, 150);
+  setTimeout(setHeaderVar, 600);
+</script>
+
+  
   <script>
     // Header-Scroll-Effekt (wie Regelwerk)
     const header = document.querySelector("header");
@@ -687,5 +708,6 @@
   </footer>
 </body>
 </html>
+
 
 
