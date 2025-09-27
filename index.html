@@ -10,9 +10,8 @@
       font-family: 'OptimusPrincepsSemiBold';
       src: url('fonts/OptimusPrincepsSemiBold.ttf') format('truetype');
     }
-html, body {
-  
-  overflow-x: auto; /* erlaubt horizontales Scrollen */
+html, body { overflow-x: hidden; }  /* Seite bleibt in der Breite stabil */
+
 }
     body {
     
@@ -108,10 +107,12 @@ header::after {
       color: #000;
       box-shadow: 0 0 10px #d0a85c;
     }
+    
     .table-wrapper {
-       width: 100vw;
-      
-    }
+  width: 100%;          /* statt 100vw */
+  overflow-x: auto;     /* falls Tabelle breiter ist, nur die Tabelle horizontal scrollen */
+}
+
 .table-wrapper tbody tr:hover {
   outline: 1px solid rgba(208,168,92,.25);
   background-color: rgba(255, 255, 255, 0.02);
@@ -769,10 +770,6 @@ tr.rank-3 { background-image: linear-gradient(to right, rgba(205,127,50,.06), tr
       
     </tbody>
   </table>
-    
-      
-    </tbody>
-  </table>
 </div>
 
 
@@ -862,6 +859,7 @@ document.getElementById('last-updated').textContent =
 
 
 </html>
+
 
 
 
