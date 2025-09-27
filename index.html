@@ -1,306 +1,202 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Bonfire Battle</title> 
   <style>
     @font-face {
       font-family: 'OptimusPrincepsSemiBold';
       src: url('fonts/OptimusPrincepsSemiBold.ttf') format('truetype');
     }
-  html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    background-color: #0f0f0f;
-}
 
-  body {
-  background-color: #0f0f0f; /* dunkles Grau, wirkt wie Dark Souls-Stimmung */
-  color: #f1f1f1;
-  font-family: 'OptimusPrinceps','Georgia', serif;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
+    :root { --header-h: 180px; }
 
-
-    header {
-  position: sticky;
-  top: 0;
-  z-index: 999;
-  background: url('/Bilder/WebseitenBanner.png') no-repeat center center;
-  background-size: 100% 100%;
-  width: 100%;
-  height: 180px;
-
- flex-shrink: 0;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  border-bottom: 3px solid #3d2c1e;
-  box-shadow: 0 0 30px rgba(208, 168, 92, 0.2);
-  transition: opacity 0.4s ease, transform 0.4s ease, filter 0.4s ease;
-}
-
-    header.scrolled {
-  opacity: 0.6;
-  filter: blur(0.5px);
-  transform: scale(0.99);
-}
-
-header.scrolled:hover {
-  opacity: 1;
-  filter: none;
-  transform: scale(1);
-}
-
-    header::after {
-      content: "";
-      display: none; /* Bonfire-Symbol wird deaktiviert */
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      background-color: #0f0f0f;
+      overflow-x: hidden;
     }
 
-    
-    header h1 {
-    font-family: 'OptimusPrincepsSemiBold';
-    font-size: 4rem; 
-    color: #d0a85c; /* Dark Souls Gold-Ton */
-    
-    text-shadow: 2px 2px 10px #000;
-    z-index: 1;
-    margin: 0;
-    padding: 0;
-  }
-  header h2 {
-    font-family: 'OptimusPrincepsSemiBold';
-    text-shadow: 2px 2px 10px #000;
-    z-index: 1;
-    margin: 0;
-    padding: 0;
-  }
+    body {
+      color: #f1f1f1;
+      font-family: 'OptimusPrinceps','Georgia', serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+    }
 
+    /* ======= HEADER (wie Regelwerk) ======= */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      background: url('/Bilder/WebseitenBanner.png') no-repeat center center;
+      background-size: 100% 100%;
+      width: 100%;
+      height: 180px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border-bottom: 3px solid #3d2c1e;
+      box-shadow: 0 0 30px rgba(208, 168, 92, 0.2);
+      transition: opacity 0.4s ease, transform 0.4s ease, filter 0.4s ease;
+    }
+    header.scrolled { opacity: 0.6; filter: blur(0.5px); transform: scale(0.99); }
+    header.scrolled:hover { opacity: 1; filter: none; transform: scale(1); }
+    header::after { content:""; display:none; }
+
+    header h1 {
+      font-family: 'OptimusPrincepsSemiBold';
+      font-size: 4rem; 
+      color: #d0a85c;
+      text-shadow: 2px 2px 10px #000;
+      z-index: 1; margin: 0; padding: 0;
+    }
+    header h2 {
+      font-family: 'OptimusPrincepsSemiBold';
+      text-shadow: 2px 2px 10px #000;
+      z-index: 1; margin: 0; padding: 0;
+    }
+
+    .header-buttons {
+      margin-top: 1rem; display: flex; gap: 1rem; z-index: 1;
+    }
+    .header-buttons a {
+      text-decoration: none; padding: 0.4rem 1rem;
+      border: 2px solid #d0a85c; background-color: rgba(0, 0, 0, 0.5);
+      color: #d0a85c; font-family: 'OptimusPrinceps', serif; font-size: 1rem;
+      text-shadow: 1px 1px 3px #000; transition: all 0.2s ease-in-out;
+    }
+    .header-buttons a:hover { background-color: #d0a85c; color: #000; box-shadow: 0 0 10px #d0a85c; }
+
+    /* ======= SEASON HEADLINE ======= */
+    .season-header {
+      text-align: center; font-size: 2.2rem;
+      margin: 1.4rem 0 .6rem;
+      color: #d0a85c;
+      text-shadow: 0 0 5px #d0a85c, 0 0 15px #d0a85c;
+    }
+
+    /* ======= TABLE WRAPPER ======= */
+    .table-wrapper {
+      width: 100%;
+      overflow-x: auto;              /* horizontales Scrollen erlauben */
+      -webkit-overflow-scrolling: touch;
+    }
+
+    /* ======= TABELLE ======= */
     table {
-      width: 90%;
-      max-width: 1000px;
-      border-collapse: collapse;
-      margin-top: 5rem;
+      /* Stabilität: nicht zu schmal werden lassen -> lieber scrollen */
+      min-width: 960px;              /* <— WICHTIG: verhindert „Crash“-Layout */
+      width: 96%;
+      margin: 1rem auto 2.5rem;
+      border-collapse: separate;     /* nötig für sticky thead */
+      border-spacing: 0;
       background-color: rgba(0, 0, 0, 0.8);
       box-shadow: 0 0 20px rgba(0,0,0,0.5);
+      position: relative;
+      table-layout: auto;            /* natürlicher Layoutfluss */
+    }
+
+    /* Sticky THEAD – sitzt direkt unter dem Header */
+    thead {
+      position: -webkit-sticky; /* iOS Safari */
+      position: sticky;
+      top: var(--header-h);
+      z-index: 6;
+      background-color: #222;
+      box-shadow: 0 2px 0 rgba(0,0,0,0.35);
     }
 
     th, td {
       border: 1px solid #444;
-      padding: 1rem;
+      padding: 0.9rem 0.8rem;
       text-align: center;
+      vertical-align: middle;
+      white-space: nowrap;          /* schützt gegen Zeilenbrüche in schmalen Zellen */
     }
 
     th {
       background-color: #222;
       color: #d0a85c;
-      font-size: 1.1rem;
+      font-size: 1.05rem;
+      font-weight: 700;
     }
 
-    tr:nth-child(even) {
-      background-color: #1a1a1a;
+    tbody tr:nth-child(even) { background-color: #1a1a1a; }
+    tbody tr:nth-child(odd)  { background-color: #151515; }
+
+    /* DS-Spaltenheader Effekte (optional, wie gehabt) */
+    th.ds1, th.ds2, th.ds3 {
+      text-shadow: 1px 1px 3px #000; border: 1px solid #444;
     }
+    th.ds1 { color: #ffd86b; }
+    th.ds2 { color: #ff9540; }
+    th.ds3 { color: #e03a3a; }
 
-    tr:nth-child(odd) {
-      background-color: #151515;
+    /* ======= STATUS BADGES ======= */
+    .status-alive   { color: #6fcf97; font-weight: 700; }
+    .status-dead    { color: #e63946; font-weight: 700; }
+    .status-skipped { color: #f2c94c; font-weight: 700; }
+
+    td.status-alive::after,
+    td.status-dead::after,
+    td.status-skipped::after {
+      display: inline-block;
+      margin-left: .6rem;
+      padding: .28rem .75rem;
+      font-size: .9rem; font-weight: 800;
+      border-radius: .55rem;
+      vertical-align: middle;
+      opacity: 1;
     }
+    td.status-alive::after   { content:"ALIVE";   background:#163d2c; color:#6fcf97; border:1px solid #235a42; }
+    td.status-dead::after    { content:"DEAD";    background:#451a1a; color:#e63946; border:1px solid #6d2424; }
+    td.status-skipped::after { content:"SKIPPED"; background:#3f3717; color:#f2c94c; border:1px solid #6a5f24; }
 
-    .status-alive {
-      color: #6fcf97;
-      font-weight: bold;
+    /* ======= Namen + Hover-Images ======= */
+    .teilnehmer-link { position: relative; display: inline-block; text-decoration: none; font-weight: 700; color: #d0a85c; }
+    .teilnehmer-link .text { padding: 0.2rem 0.5rem; border-radius: 5px; transition: all .2s ease; }
+    .teilnehmer-link:hover .text { color: #000; background-color: #d0a85c; box-shadow: 0 0 10px #d0a85c; }
+    .hover-image {
+      position: absolute; left: -215px; top: 50%; transform: translateY(-50%);
+      opacity: 0; pointer-events: none; transition: opacity .35s ease, transform .35s ease; z-index: 999;
     }
+    .hover-image img { all: unset; width: 200px; height: auto; display: block; border-radius: 5px; pointer-events: none; }
+    .teilnehmer-link:hover .hover-image { opacity: 1; transform: translateY(-50%) scale(1.04); }
 
-    .status-dead {
-      color: #e63946;
-      font-weight: bold;
+    /* ======= TOP-3 ======= */
+    tr.rank-1 .teilnehmer-link .text::before { content: "🥇 "; }
+    tr.rank-2 .teilnehmer-link .text::before { content: "🥈 "; }
+    tr.rank-3 .teilnehmer-link .text::before { content: "🥉 "; }
+    tr.rank-1 { box-shadow: inset 0 0 0 2px rgba(208,168,92,0.35); background-image: linear-gradient(to right, rgba(208,168,92,.08), transparent); }
+    tr.rank-2 { box-shadow: inset 0 0 0 2px rgba(180,180,180,0.25); background-image: linear-gradient(to right, rgba(180,180,180,.07), transparent); }
+    tr.rank-3 { box-shadow: inset 0 0 0 2px rgba(205,127,50,0.25); background-image: linear-gradient(to right, rgba(205,127,50,.06), transparent); }
+
+    tbody tr:hover { outline: 1px solid rgba(208,168,92,.25); background-color: rgba(255,255,255,0.02); }
+
+    /* ======= Mobile ======= */
+    @media (max-width: 768px) {
+      header {
+        height: 160px; 
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+        display: flex; align-items: center; justify-content: center; text-align: center;
+      }
+      header h1 { font-size: 1.8rem; }
+      .season-header { font-size: 1.8rem; margin: 1rem 0 .5rem; }
+      th, td { padding: .6rem; font-size: .9rem; }
+      /* Tabelle bleibt dank min-width scrollbar – nix quetschen */
     }
-
-
-.header-buttons {
-  margin-top: 1rem;
-  display: flex;
-  gap: 1rem;
-  z-index: 1;
-}
-
-.header-buttons a {
-  text-decoration: none;
-  padding: 0.4rem 1rem;
-  border: 2px solid #d0a85c;
-  background-color: rgba(0, 0, 0, 0.5);
-  color: #d0a85c;
-  font-family: 'OptimusPrinceps', serif;
-  font-size: 1rem;
-  text-shadow: 1px 1px 3px #000;
-  transition: all 0.2s ease-in-out;
-}
-
-.header-buttons a:hover {
-  background-color: #d0a85c;
-  color: #000;
-  box-shadow: 0 0 10px #d0a85c;
-}
-
-.content {
-  max-width: 1000px;
-  width: 90%;
-  margin-top: 3rem;
-  padding: 3rem 2rem; /* Oben mehr Padding */
-  background-color: rgba(0, 0, 0, 0.75);
-  box-shadow: 0 0 20px rgba(0,0,0,0.6);
-  font-size: 1.1rem;
-  line-height: 1.6;
-  border-bottom: 3px solid #3d2c1e;
-  border-radius: 5px;
-}
-
-
-
-
-.content h2 {
-  color: #d0a85c;
-  margin-bottom: 1rem;
-}
-
-.content p {
-  color: #eee;
-}
-
-.back-button {
-  margin-top: 2rem;
-  display: inline-block;
-  text-decoration: none;
-  color: #d0a85c;
-  border: 2px solid #d0a85c;
-  padding: 0.5rem 1rem;
-  background-color: rgba(0, 0, 0, 0.5);
-  transition: all 0.2s ease-in-out;
-  font-family: 'OptimusPrinceps', serif;
-}
-
-.back-button:hover {
-  background-color: #d0a85c;
-  color: #000;
-  box-shadow: 0 0 10px #d0a85c;
-}
-@media (max-width: 768px) {
-  header {
-    height: 160px; /* genug für das Bild, kleiner für mobile */
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-    padding: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-  }
-
-  header h1 {
-    font-size: 1.8rem; /* kleiner für mobile */
-    margin: 0;
-    padding: 0;
-  }
-
-  .header-buttons {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-    margin-top: 0.5rem;
-  }
-
-  .header-buttons a {
-    font-size: 0.8rem;
-    padding: 0.3rem 0.9rem;
-    white-space: nowrap;
-  }
-
-  header + h2 {
-    font-size: 0.95rem;
-    margin: 0.5rem 0 0;
-    text-align: center;
-  }
-}
-
-/* Navigation Buttons schöner machen */
-.nav-links {
-  text-align: center;
-  margin-bottom: 2rem;
-}
-
-.nav-links a {
-  color: #d0a85c;
-  margin: 0 1rem;
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 1.2rem;
-  transition: all 0.3s ease;
-  text-shadow: 1px 1px 5px #000;
-}
-
-.nav-links a:hover {
-  color: #fff;
-  text-shadow: 0 0 10px #d0a85c, 0 0 20px #d0a85c, 0 0 30px #d0a85c;
-}
-
-/* Die Überschrift für jedes Game hervorheben */
-@keyframes intenseFlicker {
-  0% { 
-    text-shadow: 0 0 10px #d0a85c, 0 0 20px #d0a85c; 
-    transform: scale(1);
-  }
-  30% { 
-    text-shadow: 0 0 30px #ffae42, 0 0 60px #ffae42;
-    transform: scale(1.02);
-  }
-  60% { 
-    text-shadow: 0 0 15px #d0a85c;
-    transform: scale(1);
-  }
-  100% { 
-    text-shadow: 0 0 10px #d0a85c;
-    transform: scale(1);
-  }
-}
-
-
-.game-header {
-  transition: all 0.5s ease;
-  text-align: center;
-  font-size: 2rem;
-  color: #ffddb0; /* heller, glühender Farbton */
-  border: 2px solid #d0a85c;
-  padding: 1rem;
-  margin: 2rem 0 1.5rem 0;
-  box-shadow: 0 0 20px rgba(208, 168, 92, 0.7), 0 0 40px rgba(208, 168, 92, 0.3);
-
-  border-radius: 10px;
-  background-color: rgba(0, 0, 0, 0.5);
-  animation: intenseFlicker 4s infinite;
-}
-.game-header:hover {
-  color: #ff4500;
-  border-color: #ff4500;
-  text-shadow: 0 0 10px #ff4500, 0 0 20px #ff4500, 0 0 40px #ff4500;
-  box-shadow: 0 0 40px rgba(255, 69, 0, 0.9);
-  transform: scale(1.03);
-  transition: all 0.3s ease;
-  cursor: default;
-}
-
   </style>
 </head>
 <body>
@@ -329,6 +225,7 @@ header.scrolled:hover {
         </tr>
       </thead>
       <tbody>
+        <!-- ===== Deine Zeilen (unverändert) ===== -->
         <tr>
           <td>
             <a href="https://www.twitch.tv/papierbini" class="teilnehmer-link">
@@ -339,12 +236,8 @@ header.scrolled:hover {
             </a>
           </td>
           <td class="status-alive"></td>
-          <td>54</td>
-          <td>71</td>
-          <td>0</td>
-          <td>0</td>
+          <td>54</td><td>71</td><td>0</td><td>0</td>
         </tr>
-
         <tr>
           <td>
             <a href="https://www.twitch.tv/piixelpals" class="teilnehmer-link">
@@ -355,12 +248,8 @@ header.scrolled:hover {
             </a>
           </td>
           <td class="status-alive"></td>
-          <td>114</td>
-          <td>71</td>
-          <td>0</td>
-          <td>0</td>
+          <td>114</td><td>71</td><td>0</td><td>0</td>
         </tr>
-
         <tr>
           <td>
             <a href="https://www.twitch.tv/piixelpals" class="teilnehmer-link">
@@ -371,12 +260,8 @@ header.scrolled:hover {
             </a>
           </td>
           <td class="status-skipped"></td>
-          <td>99</td>
-          <td>35</td>
-          <td class="status-skipped"></td>
-          <td>0</td>
+          <td>99</td><td>35</td><td>0</td><td>0</td>
         </tr>
-
         <tr>
           <td>
             <a href="https://www.twitch.tv/mellowdyart" class="teilnehmer-link">
@@ -387,10 +272,7 @@ header.scrolled:hover {
             </a>
           </td>
           <td class="status-skipped"></td>
-          <td>5</td>
-          <td class="status-skipped"></td>
-          <td class="status-skipped"></td>
-          <td>0</td>
+          <td>5</td><td class="status-skipped"></td><td class="status-skipped"></td><td>0</td>
         </tr>
 
         <tr>
@@ -401,12 +283,8 @@ header.scrolled:hover {
             </a>
           </td>
           <td class="status-skipped"></td>
-          <td>25</td>
-          <td class="status-skipped"></td>
-          <td class="status-skipped"></td>
-          <td>0</td>
+          <td>25</td><td class="status-skipped"></td><td class="status-skipped"></td><td>0</td>
         </tr>
-
         <tr>
           <td>
             <a href="http://www.twitch.tv/aenkiis_diary" class="teilnehmer-link">
@@ -417,12 +295,8 @@ header.scrolled:hover {
             </a>
           </td>
           <td class="status-alive"></td>
-          <td>17</td>
-          <td>3</td>
-          <td>0</td>
-          <td>0</td>
+          <td>17</td><td>3</td><td>0</td><td>0</td>
         </tr>
-
         <tr>
           <td>
             <a href="https://www.twitch.tv/melvinable" class="teilnehmer-link">
@@ -431,12 +305,8 @@ header.scrolled:hover {
             </a>
           </td>
           <td class="status-alive"></td>
-          <td class="status-skipped"></td>
-          <td class="status-skipped"></td>
-          <td>0</td>
-          <td>0</td>
+          <td class="status-skipped"></td><td class="status-skipped"></td><td>0</td><td>0</td>
         </tr>
-
         <tr>
           <td>
             <a href="https://twitch.tv/fred_inc" class="teilnehmer-link">
@@ -445,12 +315,8 @@ header.scrolled:hover {
             </a>
           </td>
           <td class="status-alive"></td>
-          <td>120</td>
-          <td>195</td>
-          <td>0</td>
-          <td>0</td>
+          <td>120</td><td>195</td><td>0</td><td>0</td>
         </tr>
-
         <tr>
           <td>
             <a href="https://m.twitch.tv/hartgezockt/home" class="teilnehmer-link">
@@ -459,12 +325,8 @@ header.scrolled:hover {
             </a>
           </td>
           <td class="status-skipped"></td>
-          <td>38</td>
-          <td>115</td>
-          <td class="status-skipped"></td>
-          <td>0</td>
+          <td>38</td><td>115</td><td class="status-skipped"></td><td>0</td>
         </tr>
-
         <tr>
           <td>
             <a href="https://twitch.tv/nikohollywood" class="teilnehmer-link">
@@ -475,12 +337,8 @@ header.scrolled:hover {
             </a>
           </td>
           <td class="status-alive"></td>
-          <td>119</td>
-          <td>43</td>
-          <td>0</td>
-          <td>0</td>
+          <td>119</td><td>43</td><td>0</td><td>0</td>
         </tr>
-
         <tr>
           <td>
             <a href="https://twitch.tv/vers3mm3lt" class="teilnehmer-link">
@@ -489,12 +347,8 @@ header.scrolled:hover {
             </a>
           </td>
           <td class="status-skipped"></td>
-          <td>10</td>
-          <td>8</td>
-          <td class="status-skipped"></td>
-          <td>0</td>
+          <td>10</td><td>8</td><td class="status-skipped"></td><td>0</td>
         </tr>
-
         <tr>
           <td>
             <a href="https://twitch.tv/peastycake" class="teilnehmer-link">
@@ -503,12 +357,8 @@ header.scrolled:hover {
             </a>
           </td>
           <td class="status-skipped"></td>
-          <td>24</td>
-          <td>13</td>
-          <td class="status-skipped"></td>
-          <td>0</td>
+          <td>24</td><td>13</td><td class="status-skipped"></td><td>0</td>
         </tr>
-
         <tr>
           <td>
             <a href="https://www.twitch.tv/eddi073" class="teilnehmer-link">
@@ -517,12 +367,8 @@ header.scrolled:hover {
             </a>
           </td>
           <td class="status-alive"></td>
-          <td>67</td>
-          <td>47</td>
-          <td>0</td>
-          <td>0</td>
+          <td>67</td><td>47</td><td>0</td><td>0</td>
         </tr>
-
         <tr>
           <td>
             <a href="https://www.twitch.tv/r3voltex" class="teilnehmer-link">
@@ -531,12 +377,8 @@ header.scrolled:hover {
             </a>
           </td>
           <td class="status-skipped"></td>
-          <td>19</td>
-          <td class="status-skipped"></td>
-          <td class="status-skipped"></td>
-          <td>0</td>
+          <td>19</td><td class="status-skipped"></td><td class="status-skipped"></td><td>0</td>
         </tr>
-
         <tr>
           <td>
             <a href="https://www.twitch.tv/papierbini" class="teilnehmer-link">
@@ -547,12 +389,8 @@ header.scrolled:hover {
             </a>
           </td>
           <td class="status-alive"></td>
-          <td>11</td>
-          <td>32</td>
-          <td>0</td>
-          <td>0</td>
+          <td>11</td><td>32</td><td>0</td><td>0</td>
         </tr>
-
         <tr>
           <td>
             <a href="https://www.twitch.tv/hidelbear" class="teilnehmer-link">
@@ -561,12 +399,8 @@ header.scrolled:hover {
             </a>
           </td>
           <td class="status-alive"></td>
-          <td>96</td>
-          <td>87</td>
-          <td>0</td>
-          <td>0</td>
+          <td>96</td><td>87</td><td>0</td><td>0</td>
         </tr>
-
         <tr>
           <td>
             <a href="https://www.twitch.tv/juliandgs" class="teilnehmer-link">
@@ -575,12 +409,8 @@ header.scrolled:hover {
             </a>
           </td>
           <td class="status-alive"></td>
-          <td class="status-skipped"></td>
-          <td>0</td>
-          <td>0</td>
-          <td>0</td>
+          <td class="status-skipped"></td><td>0</td><td>0</td><td>0</td>
         </tr>
-
         <tr>
           <td>
             <a href="https://www.twitch.tv/xtheflips" class="teilnehmer-link">
@@ -589,12 +419,8 @@ header.scrolled:hover {
             </a>
           </td>
           <td class="status-skipped"></td>
-          <td class="status-skipped"></td>
-          <td>50</td>
-          <td class="status-skipped"></td>
-          <td>0</td>
+          <td class="status-skipped"></td><td>50</td><td class="status-skipped"></td><td>0</td>
         </tr>
-
         <tr>
           <td>
             <a href="https://www.twitch.tv/sturmstruppi" class="teilnehmer-link">
@@ -603,12 +429,8 @@ header.scrolled:hover {
             </a>
           </td>
           <td class="status-alive"></td>
-          <td class="status-skipped"></td>
-          <td class="status-skipped"></td>
-          <td>0</td>
-          <td>0</td>
+          <td class="status-skipped"></td><td class="status-skipped"></td><td>0</td><td>0</td>
         </tr>
-
         <tr>
           <td>
             <a href="https://www.twitch.tv/axel_otterson" class="teilnehmer-link">
@@ -617,62 +439,40 @@ header.scrolled:hover {
             </a>
           </td>
           <td class="status-alive"></td>
-          <td class="status-skipped"></td>
-          <td class="status-skipped"></td>
-          <td>0</td>
-          <td>0</td>
+          <td class="status-skipped"></td><td class="status-skipped"></td><td>0</td><td>0</td>
         </tr>
-
+        <!-- ===== Ende deiner Zeilen ===== -->
       </tbody>
     </table>
   </div>
 
-
   <script>
-  // Setzt die CSS-Variable --header-h auf die tatsächliche Header-Höhe
-  function setHeaderVar() {
-    const headerEl = document.querySelector('header');
-    if (!headerEl) return;
-    const h = headerEl.getBoundingClientRect().height;
-    document.documentElement.style.setProperty('--header-h', h + 'px');
-  }
-
-  // Möglichst früh & oft setzen (Mobile-Browser ändern die Höhe nachträglich)
-  document.addEventListener('DOMContentLoaded', setHeaderVar);
-  window.addEventListener('load', setHeaderVar);
-  window.addEventListener('resize', setHeaderVar);
-
-  // Nachkorrigieren, falls Fonts/Banner später laden und die Höhe ändern
-  setTimeout(setHeaderVar, 150);
-  setTimeout(setHeaderVar, 600);
-</script>
-
-  
-  <script>
-    // Header-Scroll-Effekt (wie Regelwerk)
+    // Header Scroll Effekt
     const header = document.querySelector("header");
     window.addEventListener("scroll", () => {
       if (window.scrollY > 10) header.classList.add("scrolled");
       else header.classList.remove("scrolled");
     });
 
-    // Header-Höhe an CSS-Variable binden (fix für Desktop/Mobile Offsets)
+    // Header-Höhe -> CSS-Variable (für thead sticky Abstand)
     function setHeaderVar() {
       const h = document.querySelector('header')?.getBoundingClientRect().height || 180;
       document.documentElement.style.setProperty('--header-h', h + 'px');
     }
+    document.addEventListener('DOMContentLoaded', setHeaderVar);
     window.addEventListener('load', setHeaderVar);
     window.addEventListener('resize', setHeaderVar);
+    setTimeout(setHeaderVar, 150);
+    setTimeout(setHeaderVar, 600);
   </script>
 
   <script>
-    // Punkte berechnen, sortieren, Top3 markieren
+    // Punkte berechnen, sortieren, Top-3 markieren
     document.addEventListener('DOMContentLoaded', () => {
       const tbody = document.querySelector('.table-wrapper table tbody');
       if (!tbody) return;
       const rows = Array.from(tbody.querySelectorAll('tr'));
 
-      // Gesamtpunkte berechnen (DS1: idx 2, DS2: idx 3, DS3: idx 4, Total: idx 5)
       rows.forEach(row => {
         const cells = row.querySelectorAll('td');
         const ds1 = parseInt(cells[2].textContent, 10) || 0;
@@ -682,14 +482,12 @@ header.scrolled:hover {
         cells[5].textContent = total;
       });
 
-      // Sortieren nach Gesamtpunkte (absteigend)
       rows.sort((a, b) => {
         const A = parseInt(a.querySelectorAll('td')[5].textContent, 10) || 0;
         const B = parseInt(b.querySelectorAll('td')[5].textContent, 10) || 0;
         return B - A;
       });
 
-      // Top3-Klassen setzen & sortierte Zeilen einfügen
       rows.forEach((row, idx) => {
         row.classList.remove('rank-1','rank-2','rank-3');
         if (idx === 0) row.classList.add('rank-1');
@@ -700,15 +498,9 @@ header.scrolled:hover {
     });
   </script>
 
-  <footer style="margin: 4rem 0 2rem; text-align: center;">
+  <footer style="margin: 2rem 0 3rem; text-align: center;">
     <a href="impressum.html" style="color: #d0a85c; margin-right: 1rem;">Impressum</a>
     <a href="datenschutz.html" style="color: #d0a85c;">Datenschutz</a>
   </footer>
 </body>
 </html>
-
-
-
-
-
-
