@@ -355,10 +355,17 @@ th.ds3:hover {
 }
 
 
+    /* Top-3 Medaillen vor dem Namen */
+tr.rank-1 .teilnehmer-link .text::before { content: "🥇 "; }
+tr.rank-2 .teilnehmer-link .text::before { content: "🥈 "; }
+tr.rank-3 .teilnehmer-link .text::before { content: "🥉 "; }
 
+/* Optional etwas hervorheben */
+tr.rank-1 { box-shadow: inset 0 0 0 2px rgba(208,168,92,0.35); }
+tr.rank-2 { box-shadow: inset 0 0 0 2px rgba(180,180,180,0.25); }
+tr.rank-3 { box-shadow: inset 0 0 0 2px rgba(205,127,50,0.25); }
 
-
-  </style>
+ </style>
 </head>
 <body>
   <header>
@@ -734,8 +741,10 @@ th.ds3:hover {
 <script>
 document.addEventListener('DOMContentLoaded', () => {
   const tbody = document.querySelector('.table-wrapper table tbody');
+  if (!tbody) return;
   const rows = Array.from(tbody.querySelectorAll('tr'));
 
+  // Gesamtpunkte berechnen (DS1: idx 2, DS2: idx 3, DS3: idx 4, Total: idx 5)
   rows.forEach(row => {
     const cells = row.querySelectorAll('td');
     const ds1 = parseInt(cells[2].textContent, 10) || 0;
@@ -745,17 +754,24 @@ document.addEventListener('DOMContentLoaded', () => {
     cells[5].textContent = total;
   });
 
-  // sortieren nach Gesamtpunkte (absteigend)
+  // Sortieren nach Gesamtpunkte (absteigend)
   rows.sort((a, b) => {
     const pointsA = parseInt(a.querySelectorAll('td')[5].textContent, 10) || 0;
     const pointsB = parseInt(b.querySelectorAll('td')[5].textContent, 10) || 0;
     return pointsB - pointsA;
   });
 
-  // sortierte Reihen wieder einfügen
-  rows.forEach(row => tbody.appendChild(row));
+  // Alte Rank-Klassen entfernen, sortierte Reihen einfügen & neue Rank-Klassen setzen
+  rows.forEach((row, idx) => {
+    row.classList.remove('rank-1','rank-2','rank-3');
+    if (idx === 0) row.classList.add('rank-1');
+    else if (idx === 1) row.classList.add('rank-2');
+    else if (idx === 2) row.classList.add('rank-3');
+    tbody.appendChild(row);
+  });
 });
 </script>
+
 
   
 <footer style="margin-top: 4rem; text-align: center;">
@@ -768,6 +784,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 </html>
+
 
 
 
