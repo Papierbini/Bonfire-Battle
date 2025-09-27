@@ -101,18 +101,25 @@ html, body {
       box-shadow: 0 0 10px #d0a85c;
     }
 
-    .table-wrapper {
-      width: 100vw;
-    }
+  .table-wrapper {
+  width: 100vw;
+  position: relative; /* safer stacking context */
+}
 
-    table {
-      width: 90%;
-      max-width: 1000px;
-      margin: 3rem auto 2rem auto;
-      border-collapse: collapse;
-      background-color: rgba(0, 0, 0, 0.8);
-      box-shadow: 0 0 20px rgba(0,0,0,0.5);
-    }
+
+   table {
+  width: 90%;
+  max-width: 1000px;
+  margin: 3rem auto 2rem auto;
+  /* WICHTIG: sticky-kompatibel */
+  border-collapse: separate;
+  border-spacing: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+  position: relative; /* hilft bei Stacking-Kontext */
+}
+
+
 
     th, td {
       border: 1px solid #444;
@@ -134,17 +141,21 @@ html, body {
       background-color: #151515;
     }
 
-    /* 2) Sticky Tabellenkopf */
-    .table-wrapper thead th {
-      position: sticky;
-      top: 180px; /* = Header-Höhe */
-      z-index: 2;
-    }
-    @media (max-width: 768px) {
-      .table-wrapper thead th {
-        top: 160px; /* mobile Header-Höhe */
-      }
-    }
+   /* Sticky thead direkt unter dem Sticky-Header */
+.table-wrapper thead th {
+  position: sticky;
+  top: 180px;              /* = Header-Höhe Desktop */
+  z-index: 5;              /* über den Datenzeilen */
+  background-color: #222;  /* sicherer Hintergrund beim Überlappen */
+}
+
+/* Mobile: dein Header ist 160px hoch */
+@media (max-width: 768px) {
+  .table-wrapper thead th {
+    top: 160px;
+  }
+}
+
 
     /* 3) Scroll-Margin für Sprungmarken */
     :target {
@@ -496,7 +507,7 @@ tr.rank-3 { background-image: linear-gradient(to right, rgba(205,127,50,.06), tr
         <td class="status-skipped"></td>
         <td>99</td>
         <td>35</td>
-        <td>0</td>
+        <td class="status-skipped"></td>
         <td>0</td>
       </tr>
 
@@ -841,6 +852,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 </html>
+
 
 
 
