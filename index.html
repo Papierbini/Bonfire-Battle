@@ -876,6 +876,25 @@ const top3 = rows.slice(0,3).map((row,i)=>{
 top3Box.textContent = top3.join("   •   ");
 </script>
 
+  <script>
+  const header = document.querySelector('header');
+
+  // Effekt-Klasse wie im Regelwerk
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 10);
+  });
+
+  // reale Headerhöhe in --header-h schreiben (falls Bilder/Fonts die Höhe ändern)
+  function setHeaderVar() {
+    const h = header?.getBoundingClientRect().height || 180;
+    document.documentElement.style.setProperty('--header-h', h + 'px');
+  }
+  document.addEventListener('DOMContentLoaded', setHeaderVar);
+  window.addEventListener('load', setHeaderVar);
+  window.addEventListener('resize', setHeaderVar);
+</script>
+
+
 
  
   
@@ -896,6 +915,7 @@ document.getElementById('last-updated').textContent =
 
 
 </html>
+
 
 
 
