@@ -125,15 +125,20 @@
       font-size: 1.1rem;
     }
 
-    /* Sticky thead direkt unter dem Sticky-Header */
-    .table-wrapper thead th {
-      position: -webkit-sticky; /* iOS Safari */
-      position: sticky;
-      top: var(--header-h);
-      z-index: 5;
-      background-color: #222;
-      box-shadow: 0 2px 0 rgba(0,0,0,0.35);
-    }
+    /* Sticky Tabellenkopf – am thead, nicht am th */
+.table-wrapper thead {
+  position: -webkit-sticky; /* iOS Safari */
+  position: sticky;
+  top: var(--header-h);
+  z-index: 6;               /* über Zeilen */
+  background-color: #222;   /* Hintergrund fix, damit nix durchscheint */
+  box-shadow: 0 2px 0 rgba(0,0,0,0.35);
+}
+.table-wrapper thead th {
+  /* normales th Styling, KEIN sticky mehr hier */
+  background-color: #222;
+}
+
 
     tr:nth-child(even) { background-color: #1a1a1a; }
     tr:nth-child(odd)  { background-color: #151515; }
@@ -292,8 +297,12 @@
         -webkit-overflow-scrolling: touch;
         padding-left: 1rem;
       }
-      table { width: 800px; } /* horizontales Scrollen auf sehr schmalen Geräten */
-    }
+    table {
+  border-collapse: separate; /* WICHTIG */
+  border-spacing: 0;         /* WICHTIG */
+  position: relative;
+}
+
   </style>
 </head>
 <body>
@@ -678,4 +687,5 @@
   </footer>
 </body>
 </html>
+
 
