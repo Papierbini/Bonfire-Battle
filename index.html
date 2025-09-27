@@ -6,16 +6,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bonfire Battle</title> 
   <style>
-    @font-face {
+       @font-face {
       font-family: 'OptimusPrincepsSemiBold';
       src: url('fonts/OptimusPrincepsSemiBold.ttf') format('truetype');
     }
 html, body {
-  
   overflow-x: auto; /* erlaubt horizontales Scrollen */
 }
     body {
-    
       background-color: #000; /* Dark Souls Atmosphäre */
       background-size: cover;
       color: #f1f1f1;
@@ -31,35 +29,36 @@ html, body {
     }
 
     header {
-  position: sticky;
-  top: 0;
-  z-index: 999;
-  background: url('Bilder/WebseitenBanner.png') no-repeat center center;
-  background-size: 100% 100%;
-  width: 100%;
-  height: 180px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  border-bottom: 3px solid #3d2c1e;
-  box-shadow: 0 0 30px rgba(208, 168, 92, 0.2);
-  transition: opacity 0.4s ease, transform 0.4s ease, filter 0.4s ease;
-}
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      flex-shrink: 0;
+      background: url('Bilder/WebseitenBanner.png') no-repeat center center;
+      background-size: 100% 100%;
+      width: 100%;
+      height: 180px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border-bottom: 3px solid #3d2c1e;
+      box-shadow: 0 0 30px rgba(208, 168, 92, 0.2);
+      transition: opacity 0.4s ease, transform 0.4s ease, filter 0.4s ease, background-color 0.4s ease;
+    }
 
     header.scrolled {
-  opacity: 0.6;
-  filter: blur(0.5px);
-  transform: scale(0.99);
-}
+      opacity: 0.9;
+      background-color: rgba(0,0,0,0.15);  /* leichte Abdunklung beim Scrollen */
+      backdrop-filter: blur(1px);          /* dezenter Glas-Effekt */
+      transform: scale(0.99);
+    }
 
-header.scrolled:hover {
-  opacity: 1;
-  filter: none;
-  transform: scale(1);
-}
-
+    header.scrolled:hover {
+      opacity: 1;
+      filter: none;
+      transform: scale(1);
+    }
 
     header h1 {
       font-family: 'OptimusPrincepsSemiBold';
@@ -75,7 +74,6 @@ header.scrolled:hover {
       text-shadow: 2px 2px 10px #000;
       margin: 0;
       padding: 0;
-
     }
 
     .header-buttons {
@@ -102,23 +100,19 @@ header.scrolled:hover {
       color: #000;
       box-shadow: 0 0 10px #d0a85c;
     }
+
     .table-wrapper {
-       width: 100vw;
-      
+      width: 100vw;
     }
-    .table-wrapper thead th { position: sticky; top: 180px; z-index: 2; }
 
-
-
-     table {
+    table {
       width: 90%;
       max-width: 1000px;
-       margin: 3rem auto 2rem auto;
+      margin: 3rem auto 2rem auto;
       border-collapse: collapse;
       background-color: rgba(0, 0, 0, 0.8);
       box-shadow: 0 0 20px rgba(0,0,0,0.5);
     }
-
 
     th, td {
       border: 1px solid #444;
@@ -140,11 +134,27 @@ header.scrolled:hover {
       background-color: #151515;
     }
 
+    /* 2) Sticky Tabellenkopf */
+    .table-wrapper thead th {
+      position: sticky;
+      top: 180px; /* = Header-Höhe */
+      z-index: 2;
+    }
+    @media (max-width: 768px) {
+      .table-wrapper thead th {
+        top: 160px; /* mobile Header-Höhe */
+      }
+    }
+
+    /* 3) Scroll-Margin für Sprungmarken */
+    :target {
+      scroll-margin-top: 190px;
+    }
+
     .status-alive {
       color: #6fcf97;
       font-weight: bold;
     }
-
     .status-dead {
       color: #e63946;
       font-weight: bold;
@@ -153,6 +163,9 @@ header.scrolled:hover {
       color: #f2c94c;
       font-weight: bold;
     }
+
+    /* deine Badge-Styles hier unverändert ... */
+
     
 td.status-alive::after,
 td.status-dead::after,
@@ -828,6 +841,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 </html>
+
 
 
 
