@@ -467,6 +467,22 @@ tr.rank-3 { background-image: linear-gradient(to right, rgba(205,127,50,.06), tr
 .ds2 { color:#ffe0b0; border-color:#e6983b; box-shadow:0 0 20px rgba(230,152,59,.7), 0 0 40px rgba(230,152,59,.3); }
 .ds3 { color:#ffd5d0; border-color:#b0321e; box-shadow:0 0 20px rgba(176,50,30,.7), 0 0 40px rgba(176,50,30,.3); }
 
+    /* Banner auf gleiche Breite wie die Season-1-Tabelle bringen */
+.game-header.match-table{
+  box-sizing: border-box;     /* Rand in die Breite einrechnen */
+  width: 90%;
+  max-width: 1000px;          /* wie die Tabelle */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* gleiche Mobile-Logik wie bei deiner Tabelle */
+@media (max-width: 768px){
+  .game-header.match-table{
+    width: 800px;             /* wie table im Mobile-Bereich */
+  }
+}
+
 
 
 
@@ -485,7 +501,8 @@ tr.rank-3 { background-image: linear-gradient(to right, rgba(205,127,50,.06), tr
     </div>
   </header>
 
-<div class="game-header ds1">Coming Soon</div>
+<div class="game-header ds1 match-table">Coming Soon</div>
+
 
 
   
@@ -939,6 +956,7 @@ document.getElementById('last-updated').textContent =
 
 
 </html>
+
 
 
 
