@@ -436,28 +436,11 @@ tr.rank-3 { background-image: linear-gradient(to right, rgba(205,127,50,.06), tr
 .coming-soon{
   font-size: clamp(2.4rem, 4.8vw + .35rem, 4.4rem);
   animation: glowBreath 6.5s ease-in-out infinite;  /* länger = ruhiger */
-  /*text-shadow:
+  text-shadow:
     0 0 6px #000,
     0 0 14px #b32a20,
     0 0 28px #e03a3a,
     0 0 60px rgba(255,120,100,.6); 
-  */
-    -webkit-text-stroke: 1px rgba(20,10,4,.45);
-
-  /* Fallback-Kontur + dein subtiler Glow */
-  text-shadow:
-    /* 1px-Outline-Fallback (4 Richtungen) */
-    0 1px 0 rgba(20,10,4,.45),
-    0 -1px 0 rgba(20,10,4,.45),
-    1px 0 0 rgba(20,10,4,.45),
-    -1px 0 0 rgba(20,10,4,.45),
-
-    /* sanfter Weißkern & Amber-Glow (wie bisher, nur leicht angepasst) */
-    0 0 1px #fff,
-    0 0 6px rgba(255,255,255,.18),
-    0 0 14px rgba(255,170,70,.18),
-    0 0 28px rgba(255,170,70,.10);
-}
 }
 
 .coming-soon::before,
@@ -973,6 +956,7 @@ document.getElementById('last-updated').textContent =
 
 
 </html>
+
 
 
 
