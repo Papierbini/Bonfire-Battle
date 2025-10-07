@@ -431,57 +431,52 @@ tr.rank-1 { background-image: linear-gradient(to right, rgba(208,168,92,.08), tr
 tr.rank-2 { background-image: linear-gradient(to right, rgba(180,180,180,.07), transparent); }
 tr.rank-3 { background-image: linear-gradient(to right, rgba(205,127,50,.06), transparent); }
 
-/* dezenter Look – warmes Orange + kleiner Weißkern */
+/* Coming-Soon: Size-Fix (größer Desktop, moderat Mobile) */
 .coming-soon{
-  /* lass deine Größe/Margins wie sie sind */
-  color:#ff8a3d;
+  position:relative;
+  display:block;
+  margin:2.2rem auto .6rem;     /* etwas mehr Abstand nach oben/unten */
+  text-align:center;
+  font-family:'OptimusPrincepsSemiBold','OptimusPrinceps',Georgia,serif;
+  /* -> deutlich größer als .season-header (2.5rem):
+        min 2.4rem, skaliert mit Viewport, max 4.6rem */
+  font-size:clamp(2.4rem, 5.2vw + .4rem, 4.6rem);
+  line-height:1.1;
+  letter-spacing:.8px;
+
+  /* rötlicher Glow, etwas kräftiger für die größere Größe */
+  color:#e03a3a;
   text-shadow:
-    0 0 1px #fff,                         /* feiner Weißkern */
-    0 0 6px rgba(255,255,255,.22),        /* zartes Weiß innen */
-    0 0 14px rgba(255,170,70,.22),        /* leichter Amber-Glow */
-    0 0 32px rgba(255,170,70,.12);        /* sehr dezenter Halo */
-  animation: glowBreath 7.5s ease-in-out infinite; /* langsamer, ruhiger */
+    0 0 6px #000,
+    0 0 14px #b32a20,
+    0 0 30px #e03a3a,
+    0 0 68px rgba(255,120,100,.55);
+
+  animation: glowBreath 6.5s ease-in-out infinite;
+  overflow:hidden;
 }
 
-/* Schimmer: schmaler, transparenter, langsamer */
+/* Schimmer weich halten – passt sich der größeren Breite an */
 .coming-soon::after{
-  left:-35%; width:45%;                   /* schmaler Sweep */
-  top:50%; height:50%; transform:translateY(-50%);
+  content:"";
+  position:absolute; top:0; bottom:0;
+  left:-45%; width:60%;
   background:linear-gradient(90deg,
     rgba(0,0,0,0) 0%,
-    rgba(255,210,160,.06) 35%,
-    rgba(255,255,255,.16) 50%,           /* weiße Spitze – schwach */
-    rgba(255,210,160,.06) 65%,
+    rgba(255,220,200,.08) 35%,
+    rgba(255,210,180,.18) 50%,
+    rgba(255,220,200,.08) 65%,
     rgba(0,0,0,0) 100%
   );
-  filter: blur(8px);                      /* weniger verschwommen */
-  opacity:.18;                            /* deutlich leiser */
-  mix-blend-mode:screen;
-  animation:sweepSoft 8s cubic-bezier(.4,0,.2,1) infinite;
-}
-
-/* sehr leichter Ambient-Halo */
-.coming-soon::before{
-  left:-30%; width:40%;
-  top:50%; height:70%; transform:translateY(-50%);
-  background:radial-gradient(50% 120% at 50% 50%,
-    rgba(255,200,140,.08) 0%,
-    rgba(255,200,140,0) 70%
-  );
-  filter: blur(10px);
-  opacity:.10;
+  filter: blur(12px);
   mix-blend-mode:soft-light;
-  animation:sweepSoftReverse 12s cubic-bezier(.4,0,.2,1) infinite;
+  animation:sweepSoft 6s cubic-bezier(.4,0,.2,1) infinite;
+  pointer-events:none;
 }
 
-/* vorhandene Keyframes kannst du lassen; diese passen gut: */
-@keyframes sweepSoft{
-  0%   { transform: translate(-35%, -50%); }
-  100% { transform: translate(115%, -50%); }
-}
-@keyframes sweepSoftReverse{
-  0%   { transform: translate(100%, -50%); }
-  100% { transform: translate(-30%, -50%); }
+/* optional: auf sehr großen Screens noch eine Stufe drauf */
+@media (min-width: 1400px){
+  .coming-soon{ font-size:4.8rem; }
 }
 
 
@@ -953,6 +948,7 @@ document.getElementById('last-updated').textContent =
 
 
 </html>
+
 
 
 
