@@ -489,6 +489,54 @@ tr.rank-3 { background-image: linear-gradient(to right, rgba(205,127,50,.06), tr
 }
 
 
+/* Glowing Box im Regelwerk-Stil */
+.coming-box{
+  max-width: 1000px;
+  width: 90%;
+  margin: 1.8rem auto .8rem;   /* oberhalb der Tabelle */
+  padding: 1.1rem 1.4rem;
+  background: rgba(0,0,0,.6);
+  border: 1px solid rgba(208,168,92,.45);     /* feiner Goldrand */
+  border-radius: 14px;
+
+  /* außen sanftes Gold-Glow + leichte Tiefe */
+  box-shadow:
+    0 0 0 1px rgba(208,168,92,.15) inset,
+    0 8px 22px rgba(0,0,0,.55),
+    0 0 28px rgba(208,168,92,.18),
+    0 0 60px rgba(208,168,92,.08);
+  position: relative;
+}
+
+/* weicher ambient Halo wie bei deinem Regelwerk */
+.coming-box::before{
+  content:"";
+  position:absolute; inset:-12px;
+  border-radius: inherit;
+  background: radial-gradient(80% 60% at 50% 0%,
+              rgba(208,168,92,.18) 0%,
+              rgba(208,168,92,0) 60%);
+  filter: blur(8px);
+  z-index: -1;
+}
+
+/* Überschrift im Kasten – etwas größer + feine Kontur */
+.coming-title{
+  margin: 0;
+  text-align: center;
+  font-family:'OptimusPrincepsSemiBold','OptimusPrinceps',Georgia,serif;
+  font-size: clamp(2.4rem, 4.8vw + .3rem, 4.2rem);  /* größer als Season-Header */
+  letter-spacing: .6px;
+  color: #ff8a3d;                                   /* warmes Orange */
+  -webkit-text-stroke: 1px rgba(20,10,4,.45);       /* dezente Umrandung */
+  text-shadow:
+    0 0 1px #fff,                                   /* kleiner weißer Kern */
+    0 0 6px rgba(255,255,255,.16),
+    0 0 12px rgba(255,170,70,.18),                  /* zarter Amber-Glow */
+    0 0 28px rgba(255,170,70,.10);
+}
+
+
 
 
   </style>
@@ -504,7 +552,9 @@ tr.rank-3 { background-image: linear-gradient(to right, rgba(205,127,50,.06), tr
     </div>
   </header>
 
-<h2 class="coming-soon">Season 2 – Coming Soon</h2>
+<div class="coming-box">
+  <h2 class="coming-title">Season 2 – Coming Soon</h2>
+</div>
   
 <h2 class="season-header">Season 1</h2>
 
@@ -956,6 +1006,7 @@ document.getElementById('last-updated').textContent =
 
 
 </html>
+
 
 
 
