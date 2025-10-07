@@ -431,110 +431,61 @@ tr.rank-1 { background-image: linear-gradient(to right, rgba(208,168,92,.08), tr
 tr.rank-2 { background-image: linear-gradient(to right, rgba(180,180,180,.07), transparent); }
 tr.rank-3 { background-image: linear-gradient(to right, rgba(205,127,50,.06), transparent); }
 
-/* Coming-Soon: Size-Fix (größer Desktop, moderat Mobile) */
-/* weicher, breiter Schimmer */
-.coming-soon{
-  font-size: clamp(1.4rem, 3.8vw + .25rem, 3.4rem);
-  animation: glowBreath 6.5s ease-in-out infinite;  /* länger = ruhiger */
+/* Coming Soon im Game-Header-Stil (dezent, mit feiner Outline + kleinem Weißkern) */
+.game-header.coming{
+  /* Position & Größe über der Tabelle */
+  margin: 1.8rem auto .8rem;
+  font-size: clamp(2.4rem, 4.8vw + .3rem, 4.4rem);
+
+  /* Farbe/Outline/Glow */
+  color: #ff8a3d;                               /* warmes Orange */
+  -webkit-text-stroke: 1px rgba(20,10,4,.45);   /* feine Umrandung */
   text-shadow:
-    0 0 6px #000,
-    0 0 14px #b32a20,
-    0 0 28px #e03a3a,
-    0 0 60px rgba(255,120,100,.6); 
-}
-
-.coming-soon::before,
-.coming-soon::after{
-  content:"";
-  position:absolute; top:0; bottom:0;
-  pointer-events:none;
-  mix-blend-mode:soft-light;
-  opacity:.55;
-  filter: blur(10px);              /* macht die Kante weich */
-}
-
-/* breite, warme Glanzbahn */
-.coming-soon::after{
-  left:-40%; width:55%;
-  background:linear-gradient(90deg,
-    rgba(0,0,0,0) 0%,
-    rgba(255,220,200,.08) 35%,
-    rgba(255,210,180,.18) 50%,
-    rgba(255,220,200,.08) 65%,
-    rgba(0,0,0,0) 100%
-  );
-  animation:sweepSoft 6s cubic-bezier(.4,0,.2,1) infinite;
-}
-
-/* zweiter, noch weicherer Halo gegenläufig */
-.coming-soon::before{
-  left:-30%; width:45%;
-  background:radial-gradient(50% 120% at 50% 50%,
-    rgba(255,150,130,.10) 0%,
-    rgba(255,150,130,0) 70%
-  );
-  animation:sweepSoftReverse 10s cubic-bezier(.4,0,.2,1) infinite;
-  opacity:.35;
-  filter: blur(14px);
-}
-
-/* sanfte Sweep-Animationen */
-@keyframes sweepSoft{
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(180%); }
-}
-@keyframes sweepSoftReverse{
-  0%   { transform: translateX(160%); }
-  100% { transform: translateX(-40%); }
-}
-
-
-/* Glowing Box im Regelwerk-Stil */
-.coming-box{
-  max-width: 1000px;
-  width: 90%;
-  margin: 1.8rem auto .8rem;   /* oberhalb der Tabelle */
-  padding: 1.1rem 1.4rem;
-  background: rgba(0,0,0,.6);
-  border: 1px solid rgba(208,168,92,.45);     /* feiner Goldrand */
-  border-radius: 14px;
-
-  /* außen sanftes Gold-Glow + leichte Tiefe */
-  box-shadow:
-    0 0 0 1px rgba(208,168,92,.15) inset,
-    0 8px 22px rgba(0,0,0,.55),
-    0 0 28px rgba(208,168,92,.18),
-    0 0 60px rgba(208,168,92,.08);
-  position: relative;
-}
-
-/* weicher ambient Halo wie bei deinem Regelwerk */
-.coming-box::before{
-  content:"";
-  position:absolute; inset:-12px;
-  border-radius: inherit;
-  background: radial-gradient(80% 60% at 50% 0%,
-              rgba(208,168,92,.18) 0%,
-              rgba(208,168,92,0) 60%);
-  filter: blur(8px);
-  z-index: -1;
-}
-
-/* Überschrift im Kasten – etwas größer + feine Kontur */
-.coming-title{
-  margin: 0;
-  text-align: center;
-  font-family:'OptimusPrincepsSemiBold','OptimusPrinceps',Georgia,serif;
-  font-size: clamp(2.4rem, 4.8vw + .3rem, 4.2rem);  /* größer als Season-Header */
-  letter-spacing: .6px;
-  color: #ff8a3d;                                   /* warmes Orange */
-  -webkit-text-stroke: 1px rgba(20,10,4,.45);       /* dezente Umrandung */
-  text-shadow:
-    0 0 1px #fff,                                   /* kleiner weißer Kern */
+    0 0 1px #fff,                               /* sehr kleiner Weißkern */
     0 0 6px rgba(255,255,255,.16),
-    0 0 12px rgba(255,170,70,.18),                  /* zarter Amber-Glow */
+    0 0 12px rgba(255,170,70,.18),              /* zarter Amber-Glow */
     0 0 28px rgba(255,170,70,.10);
+
+  /* Rahmen/Box-Glow im Gold deiner Seite */
+  border-color: #d0a85c;
+  box-shadow:
+    0 0 20px rgba(208,168,92,.35),
+    0 0 40px rgba(208,168,92,.18);
+
+  /* sanfte Atmung statt hartem Flicker */
+  animation: headerBreath 6.5s ease-in-out infinite;
 }
+
+/* Hover-Effekt neutral halten (kein Rot-Switch) */
+.game-header.coming:hover{
+  color: #ff8a3d;
+  border-color: #d0a85c;
+  text-shadow:
+    0 0 1px #fff,
+    0 0 6px rgba(255,255,255,.16),
+    0 0 12px rgba(255,170,70,.18),
+    0 0 28px rgba(255,170,70,.10);
+  box-shadow:
+    0 0 24px rgba(255,174,66,.30),
+    0 0 52px rgba(255,174,66,.16);
+  transform: none;
+  cursor: default;
+}
+
+/* weiche „Breathing“-Animation passend zum Stil */
+@keyframes headerBreath{
+  0%,100%{
+    box-shadow:
+      0 0 20px rgba(208,168,92,.28),
+      0 0 40px rgba(208,168,92,.14);
+  }
+  50%{
+    box-shadow:
+      0 0 28px rgba(255,174,66,.38),
+      0 0 56px rgba(255,174,66,.20);
+  }
+}
+
 
 
 
@@ -552,9 +503,8 @@ tr.rank-3 { background-image: linear-gradient(to right, rgba(205,127,50,.06), tr
     </div>
   </header>
 
-<div class="coming-box">
-  <h2 class="coming-title">Season 2 – Coming Soon</h2>
-</div>
+<div class="game-header coming">Season 2 – Coming Soon</div>
+
   
 <h2 class="season-header">Season 1</h2>
 
@@ -1006,6 +956,7 @@ document.getElementById('last-updated').textContent =
 
 
 </html>
+
 
 
 
