@@ -431,20 +431,36 @@ tr.rank-1 { background-image: linear-gradient(to right, rgba(208,168,92,.08), tr
 tr.rank-2 { background-image: linear-gradient(to right, rgba(180,180,180,.07), transparent); }
 tr.rank-3 { background-image: linear-gradient(to right, rgba(205,127,50,.06), transparent); }
 
-/* weicher, breiter Schimmer */
-.coming-soon::before,
+/* Coming-Soon: Size-Fix (größer Desktop, moderat Mobile) */
+.coming-soon{
+  position:relative;
+  display:block;
+  margin:2.2rem auto .6rem;     /* etwas mehr Abstand nach oben/unten */
+  text-align:center;
+  font-family:'OptimusPrincepsSemiBold','OptimusPrinceps',Georgia,serif;
+  /* -> deutlich größer als .season-header (2.5rem):
+        min 2.4rem, skaliert mit Viewport, max 4.6rem */
+  font-size:clamp(2.4rem, 5.2vw + .4rem, 4.6rem);
+  line-height:1.1;
+  letter-spacing:.8px;
+
+  /* rötlicher Glow, etwas kräftiger für die größere Größe */
+  color:#e03a3a;
+  text-shadow:
+    0 0 6px #000,
+    0 0 14px #b32a20,
+    0 0 30px #e03a3a,
+    0 0 68px rgba(255,120,100,.55);
+
+  animation: glowBreath 6.5s ease-in-out infinite;
+  overflow:hidden;
+}
+
+/* Schimmer weich halten – passt sich der größeren Breite an */
 .coming-soon::after{
   content:"";
   position:absolute; top:0; bottom:0;
-  pointer-events:none;
-  mix-blend-mode:soft-light;
-  opacity:.55;
-  filter: blur(10px);              /* macht die Kante weich */
-}
-
-/* breite, warme Glanzbahn */
-.coming-soon::after{
-  left:-40%; width:55%;
+  left:-45%; width:60%;
   background:linear-gradient(90deg,
     rgba(0,0,0,0) 0%,
     rgba(255,220,200,.08) 35%,
@@ -452,39 +468,17 @@ tr.rank-3 { background-image: linear-gradient(to right, rgba(205,127,50,.06), tr
     rgba(255,220,200,.08) 65%,
     rgba(0,0,0,0) 100%
   );
+  filter: blur(12px);
+  mix-blend-mode:soft-light;
   animation:sweepSoft 6s cubic-bezier(.4,0,.2,1) infinite;
+  pointer-events:none;
 }
 
-/* zweiter, noch weicherer Halo gegenläufig */
-.coming-soon::before{
-  left:-30%; width:45%;
-  background:radial-gradient(50% 120% at 50% 50%,
-    rgba(255,150,130,.10) 0%,
-    rgba(255,150,130,0) 70%
-  );
-  animation:sweepSoftReverse 10s cubic-bezier(.4,0,.2,1) infinite;
-  opacity:.35;
-  filter: blur(14px);
+/* optional: auf sehr großen Screens noch eine Stufe drauf */
+@media (min-width: 1400px){
+  .coming-soon{ font-size:4.8rem; }
 }
 
-/* sanfte Sweep-Animationen */
-@keyframes sweepSoft{
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(180%); }
-}
-@keyframes sweepSoftReverse{
-  0%   { transform: translateX(160%); }
-  100% { transform: translateX(-40%); }
-}
-
-.coming-soon{
-  animation: glowBreath 6.5s ease-in-out infinite;  /* länger = ruhiger */
-  text-shadow:
-    0 0 6px #000,
-    0 0 14px #b32a20,
-    0 0 28px #e03a3a,
-    0 0 60px rgba(255,120,100,.6);
-}
 
 
 
@@ -953,6 +947,7 @@ document.getElementById('last-updated').textContent =
 
 
 </html>
+
 
 
 
