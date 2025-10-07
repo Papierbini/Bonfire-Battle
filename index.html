@@ -431,6 +431,38 @@ tr.rank-1 { background-image: linear-gradient(to right, rgba(208,168,92,.08), tr
 tr.rank-2 { background-image: linear-gradient(to right, rgba(180,180,180,.07), transparent); }
 tr.rank-3 { background-image: linear-gradient(to right, rgba(205,127,50,.06), transparent); }
 
+/* === Announcement (Regelwerk-Stil) === */
+.ann{
+  max-width:1000px;width:90%;
+  margin:2rem auto .75rem;padding:1.5rem 1.25rem;
+  background:rgba(0,0,0,.75);box-shadow:0 0 20px rgba(0,0,0,.6);
+  border-bottom:3px solid #3d2c1e;border-radius:8px;
+  font-size:1.05rem;line-height:1.6;
+}
+.ann .ann-title{
+  margin:0 0 .8rem;text-align:center;font-size:1.6rem;color:#ffddb0;
+  border:2px solid #d0a85c;padding:.7rem 1rem;border-radius:10px;background:rgba(0,0,0,.5);
+  box-shadow:0 0 20px rgba(208,168,92,.7),0 0 40px rgba(208,168,92,.3);
+  animation: seasonFlicker 4s infinite; /* nutzt deine vorhandene Animation */
+}
+.ann p{color:#eee;margin:.6rem 0}
+.ann ul{margin:.5rem 0 0 1.2rem}
+.ann li{margin:.25rem 0}
+.ann-cta{margin-top:.8rem;display:flex;gap:.6rem;flex-wrap:wrap;justify-content:center}
+.ann-cta a{
+  text-decoration:none;padding:.35rem .9rem;border:2px solid #d0a85c;
+  background:rgba(0,0,0,.5);color:#d0a85c;font-family:'OptimusPrinceps',serif;font-size:1rem;
+  text-shadow:1px 1px 3px #000;transition:all .2s ease-in-out;
+}
+.ann-cta a:hover{background:#d0a85c;color:#000;box-shadow:0 0 10px #d0a85c}
+
+/* einklappbar */
+.ann .ann-toggle{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:.6rem}
+.ann .ann-toggle button{
+  border:1px solid #444;background:rgba(255,255,255,.06);color:#ddd;
+  padding:.25rem .6rem;border-radius:.4rem;cursor:pointer;
+}
+.ann.collapsed .ann-body{display:none}
 
   </style>
 </head>
@@ -444,6 +476,29 @@ tr.rank-3 { background-image: linear-gradient(to right, rgba(205,127,50,.06), tr
       <a href="regelwerk.html">Regelwerk</a>
     </div>
   </header>
+
+  <section class="ann" id="season-announcement" aria-label="Ankündigung Season 2">
+  <div class="ann-toggle">
+    <h3 class="ann-title">Season 1 ist durch – Season 2 steht vor der Tür!</h3>
+    <button type="button" id="annCollapseBtn" aria-expanded="true">Einklappen</button>
+  </div>
+  <div class="ann-body">
+    <p>Danke fürs Mitmachen bei Season 1 🔥 – VODs & Punkte bleiben online. Jetzt bereiten wir <strong>Season 2</strong> vor.</p>
+    <ul>
+      <li><strong>Okt</strong>: Format-Feinschliff (Regeln, Punkte, Overlay)</li>
+      <li><strong>Nov</strong>: Anmeldung & Teilnehmer*innen-Bestätigung</li>
+      <li><strong>Dez/Jan</strong>: Trainings-Wochen</li>
+      <li><strong>Offizieller Start</strong>: TBA – Ankündigung hier</li>
+    </ul>
+    <div class="ann-cta">
+      <a href="regelwerk.html">Regelwerk</a>
+      <!-- <a href="DEIN-ANMELDELINK" target="_blank">Jetzt anmelden</a> -->
+      <a href="https://www.youtube.com/@BonfireBattle" target="_blank">YouTube</a>
+      <a href="https://www.twitch.tv/papierbini" target="_blank">Twitch</a>
+    </div>
+  </div>
+</section>
+
 
 <h2 class="season-header">Season 1</h2>
 <div class="table-wrapper">
@@ -468,7 +523,7 @@ tr.rank-3 { background-image: linear-gradient(to right, rgba(205,127,50,.06), tr
             </span>
           </a>
         </td>
-        <td class="status-skipped"></td>
+        <td> / </td>
         <td>54</td>
         <td>71</td>
         <td class="status-skipped"></td>
@@ -484,7 +539,7 @@ tr.rank-3 { background-image: linear-gradient(to right, rgba(205,127,50,.06), tr
             </span>
           </a>
         </td>
-        <td class="status-dead"></td>
+        <td> / </td>
         <td>114</td>
         <td>71</td>
         <td>25</td>
@@ -499,7 +554,7 @@ tr.rank-3 { background-image: linear-gradient(to right, rgba(205,127,50,.06), tr
             </span>
           </a>
         </td>
-        <td class="status-skipped"></td>
+        <td> / </td>
         <td>99</td>
         <td>35</td>
         <td class="status-skipped"></td>
@@ -516,7 +571,7 @@ tr.rank-3 { background-image: linear-gradient(to right, rgba(205,127,50,.06), tr
             </span>
           </a>
         </td>
-        <td class="status-skipped"></td>
+        <td> / </td>
         <td>5</td>
         <td class="status-skipped"></td>
         <td class="status-skipped"></td>
@@ -534,7 +589,7 @@ tr.rank-3 { background-image: linear-gradient(to right, rgba(205,127,50,.06), tr
             </span>
           </a>
         </td>
-        <td class="status-skipped"></td>
+        <<td> / </td>
         <td>25</td>
         <td class="status-skipped"></td>
         <td class="status-skipped"></td>
@@ -550,7 +605,7 @@ tr.rank-3 { background-image: linear-gradient(to right, rgba(205,127,50,.06), tr
       </span>
     </a>
   </td>
-        <td class="status-dead"></td>
+        <td> / </td>
         <td>17</td>
         <td>3</td>
         <td>0</td>
@@ -566,7 +621,7 @@ tr.rank-3 { background-image: linear-gradient(to right, rgba(205,127,50,.06), tr
             </span>
           </a>
         </td>
-        <td class="status-skipped"></td>
+        <td> / </td>
         <td class="status-skipped"></td>
         <td class="status-skipped"></td>
         <td class="status-skipped"></td>
@@ -582,7 +637,7 @@ tr.rank-3 { background-image: linear-gradient(to right, rgba(205,127,50,.06), tr
             </span>
           </a>
         </td>
-        <td class="status-dead"></td>
+        <td> / </td>
         <td>120</td>
         <td>195</td>
         <td>121</td>
@@ -598,7 +653,7 @@ tr.rank-3 { background-image: linear-gradient(to right, rgba(205,127,50,.06), tr
             </span>
           </a>
         </td>
-        <td class="status-skipped"></td>
+        <td> / </td>
         <td>38</td>
         <td>115</td>
         <td class="status-skipped"></td>
@@ -614,7 +669,7 @@ tr.rank-3 { background-image: linear-gradient(to right, rgba(205,127,50,.06), tr
             </span>
           </a>
         </td>
-        <td class="status-dead"></td>
+        <td> / </td>
         <td>119</td>
         <td>43</td>
         <td>5</td>
@@ -630,7 +685,7 @@ tr.rank-3 { background-image: linear-gradient(to right, rgba(205,127,50,.06), tr
             </span>
           </a>
         </td>
-        <td class="status-skipped"></td>
+        <td> / </td>
         <td>10</td>
         <td>8</td>
         <td class="status-skipped"></td>
@@ -648,7 +703,7 @@ tr.rank-3 { background-image: linear-gradient(to right, rgba(205,127,50,.06), tr
             </span>
           </a>
         </td>
-        <td class="status-skipped"></td>
+        <td> / </td>
         <td>24</td>
         <td>13</td>
         <td class="status-skipped"></td>
@@ -664,7 +719,7 @@ tr.rank-3 { background-image: linear-gradient(to right, rgba(205,127,50,.06), tr
             </span>
           </a>
         </td>
-        <td class="status-dead"></td>
+        <td> / </td>
         <td>67</td>
         <td>47</td>
         <td>125</td>
@@ -680,7 +735,7 @@ tr.rank-3 { background-image: linear-gradient(to right, rgba(205,127,50,.06), tr
             </span>
           </a>
         </td>
-        <td class="status-skipped"></td>
+        <td> / </td>
         <td>19</td>
         <td class="status-skipped"></td>
         <td class="status-skipped"></td>
@@ -698,7 +753,7 @@ tr.rank-3 { background-image: linear-gradient(to right, rgba(205,127,50,.06), tr
             </span>
           </a>
         </td>
-        <td class="status-dead"></td>
+        <td> / </td>
         <td>11</td>
         <td>32</td>
         <td>38</td>
@@ -714,7 +769,7 @@ tr.rank-3 { background-image: linear-gradient(to right, rgba(205,127,50,.06), tr
             </span>
           </a>
         </td>
-        <td class="status-dead"></td>
+        <td> / </td>
         <td>96</td>
         <td>87</td>
         <td>0</td>
@@ -730,7 +785,7 @@ tr.rank-3 { background-image: linear-gradient(to right, rgba(205,127,50,.06), tr
             </span>
           </a>
         </td>
-        <td class="status-alive"></td>
+        <td> / </td>
         <td class="status-skipped"></td>
         <td>0</td>
         <td>71</td>
@@ -746,7 +801,7 @@ tr.rank-3 { background-image: linear-gradient(to right, rgba(205,127,50,.06), tr
             </span>
           </a>
         </td>
-        <td class="status-skipped"></td>
+        <td> / </td>
         <td class="status-skipped"></td>
         <td>50</td>
         <td class="status-skipped"></td>
@@ -762,7 +817,7 @@ tr.rank-3 { background-image: linear-gradient(to right, rgba(205,127,50,.06), tr
             </span>
           </a>
         </td>
-        <td class="status-alive"></td>
+        <td> / </td>
         <td class="status-skipped"></td>
         <td class="status-skipped"></td>
         <td>84</td>
@@ -778,7 +833,7 @@ tr.rank-3 { background-image: linear-gradient(to right, rgba(205,127,50,.06), tr
             </span>
           </a>
         </td>
-        <td class="status-alive"></td>
+        <td> / </td>
         <td class="status-skipped"></td>
         <td class="status-skipped"></td>
         <td>68</td>
@@ -795,7 +850,7 @@ tr.rank-3 { background-image: linear-gradient(to right, rgba(205,127,50,.06), tr
             </span>
           </a>
         </td>
-        <td class="status-alive"></td>
+        <td> / </td>
         <td class="status-skipped"></td>
         <td class="status-skipped"></td>
         <td>68</td>
@@ -888,12 +943,35 @@ document.getElementById('last-updated').textContent =
   "Zuletzt aktualisiert: " + new Date().toLocaleString('de-DE');
 </script>
 
-  
+ <script>
+(function(){
+  const box = document.getElementById('season-announcement');
+  const btn = document.getElementById('annCollapseBtn');
+  if(!box || !btn) return;
+
+  const key = 'bb_ann_collapsed_v1';
+  const wasCollapsed = localStorage.getItem(key) === '1';
+  if (wasCollapsed) {
+    box.classList.add('collapsed');
+    btn.setAttribute('aria-expanded','false');
+    btn.textContent = 'Ausklappen';
+  }
+
+  btn.addEventListener('click', () => {
+    const isCollapsed = box.classList.toggle('collapsed');
+    localStorage.setItem(key, isCollapsed ? '1' : '0');
+    btn.setAttribute('aria-expanded', isCollapsed ? 'false' : 'true');
+    btn.textContent = isCollapsed ? 'Ausklappen' : 'Einklappen';
+  });
+})();
+</script>
+ 
 </body>
 
 
 
 </html>
+
 
 
 
