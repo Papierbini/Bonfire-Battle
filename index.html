@@ -431,60 +431,61 @@ tr.rank-1 { background-image: linear-gradient(to right, rgba(208,168,92,.08), tr
 tr.rank-2 { background-image: linear-gradient(to right, rgba(180,180,180,.07), transparent); }
 tr.rank-3 { background-image: linear-gradient(to right, rgba(205,127,50,.06), transparent); }
 
-/* Coming-Soon: größer, rot, weiches "Breathing" */
-.coming-soon{
-  position:relative;
-  display:block;
-  margin:1.6rem auto .4rem;
-  text-align:center;
-  font-family:'OptimusPrincepsSemiBold','OptimusPrinceps',Georgia,serif;
-  font-size:clamp(2.6rem, 4.2vw + 1rem, 4.2rem); /* größer */
-  letter-spacing:.6px;
-  color:#e03a3a; /* rötlicher Grundton */
-  text-shadow:
-    0 0 5px #000,
-    0 0 10px #cc1100,
-    0 0 22px #cc1100,
-    0 0 42px rgba(255,78,66,.55);
-  animation: glowBreath 5.5s ease-in-out infinite; /* weich statt kantig */
-  overflow:hidden;
-}
-
+/* weicher, breiter Schimmer */
+.coming-soon::before,
 .coming-soon::after{
   content:"";
   position:absolute; top:0; bottom:0;
-  left:-25%; width:22%;
-  background:linear-gradient(120deg, transparent 0%, rgba(255,255,255,.18) 45%, transparent 100%);
-  transform:skewX(-12deg);
-  animation:sweepSoft 3.8s ease-in-out infinite;
-  pointer-events:none; mix-blend-mode:screen;
+  pointer-events:none;
+  mix-blend-mode:soft-light;
+  opacity:.55;
+  filter: blur(10px);              /* macht die Kante weich */
 }
 
-/* weichere "Atmung" statt Flackern */
-@keyframes glowBreath{
-  0%{
-    text-shadow:0 0 5px #000, 0 0 10px #cc1100, 0 0 22px #cc1100, 0 0 38px rgba(255,78,66,.45);
-  }
-  25%{
-    text-shadow:0 0 6px #000, 0 0 14px #e03a3a, 0 0 28px #e03a3a, 0 0 48px rgba(255,110,90,.65);
-  }
-  50%{
-    text-shadow:0 0 7px #000, 0 0 18px #ff4e42, 0 0 36px #ff4e42, 0 0 58px rgba(255,140,110,.85);
-  }
-  75%{
-    text-shadow:0 0 6px #000, 0 0 14px #e03a3a, 0 0 28px #e03a3a, 0 0 48px rgba(255,110,90,.65);
-  }
-  100%{
-    text-shadow:0 0 5px #000, 0 0 10px #cc1100, 0 0 22px #cc1100, 0 0 38px rgba(255,78,66,.45);
-  }
+/* breite, warme Glanzbahn */
+.coming-soon::after{
+  left:-40%; width:55%;
+  background:linear-gradient(90deg,
+    rgba(0,0,0,0) 0%,
+    rgba(255,220,200,.08) 35%,
+    rgba(255,210,180,.18) 50%,
+    rgba(255,220,200,.08) 65%,
+    rgba(0,0,0,0) 100%
+  );
+  animation:sweepSoft 6s cubic-bezier(.4,0,.2,1) infinite;
 }
 
-/* weicher, weniger “kantiger” Schimmer-Sweep */
+/* zweiter, noch weicherer Halo gegenläufig */
+.coming-soon::before{
+  left:-30%; width:45%;
+  background:radial-gradient(50% 120% at 50% 50%,
+    rgba(255,150,130,.10) 0%,
+    rgba(255,150,130,0) 70%
+  );
+  animation:sweepSoftReverse 10s cubic-bezier(.4,0,.2,1) infinite;
+  opacity:.35;
+  filter: blur(14px);
+}
+
+/* sanfte Sweep-Animationen */
 @keyframes sweepSoft{
-  0%   { left:-30%; opacity:.65; }
-  50%  { left:115%; opacity:.35; }
-  100% { left:115%; opacity:0; }
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(180%); }
 }
+@keyframes sweepSoftReverse{
+  0%   { transform: translateX(160%); }
+  100% { transform: translateX(-40%); }
+}
+
+.coming-soon{
+  animation: glowBreath 6.5s ease-in-out infinite;  /* länger = ruhiger */
+  text-shadow:
+    0 0 6px #000,
+    0 0 14px #b32a20,
+    0 0 28px #e03a3a,
+    0 0 60px rgba(255,120,100,.6);
+}
+
 
 
   </style>
@@ -952,6 +953,7 @@ document.getElementById('last-updated').textContent =
 
 
 </html>
+
 
 
 
