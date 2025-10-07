@@ -933,34 +933,14 @@ document.getElementById('last-updated').textContent =
   "Zuletzt aktualisiert: " + new Date().toLocaleString('de-DE');
 </script>
 
- <script>
-(function(){
-  const box = document.getElementById('season-announcement');
-  const btn = document.getElementById('annCollapseBtn');
-  if(!box || !btn) return;
-
-  const key = 'bb_ann_collapsed_v1';
-  const wasCollapsed = localStorage.getItem(key) === '1';
-  if (wasCollapsed) {
-    box.classList.add('collapsed');
-    btn.setAttribute('aria-expanded','false');
-    btn.textContent = 'Ausklappen';
-  }
-
-  btn.addEventListener('click', () => {
-    const isCollapsed = box.classList.toggle('collapsed');
-    localStorage.setItem(key, isCollapsed ? '1' : '0');
-    btn.setAttribute('aria-expanded', isCollapsed ? 'false' : 'true');
-    btn.textContent = isCollapsed ? 'Ausklappen' : 'Einklappen';
-  });
-})();
-</script>
+ 
  
 </body>
 
 
 
 </html>
+
 
 
 
