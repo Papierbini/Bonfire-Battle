@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -7,33 +6,24 @@
   <title>Bonfire Battle</title>
 
   <!-- ===== Favicons / Pinned Tab / Touch Icons ===== -->
-  <!-- Beste Qualität (SVG) -->
   <link rel="icon" href="Bilder/BonfireBattleLogo3.png" type="image/svg+xml" />
-  <!-- PNG-Fallbacks -->
   <link rel="icon" href="/Bilder/favicon-48.png" sizes="48x48" type="image/png" />
   <link rel="icon" href="Bilder/favicon-32.png" sizes="32x32" type="image/png" />
   <link rel="icon" href="Bilder/favicon-16.png" sizes="16x16" type="image/png" />
-  <!-- iOS/Android Homescreen -->
   <link rel="apple-touch-icon" href="Bilder/apple-touch-icon.png" sizes="180x180" />
-  <!-- Safari Pinned Tab (macOS) – passt die Farbe der Fläche an -->
   <link rel="mask-icon" href="Bilder/safari-pinned-tab.svg" color="#d0a85c" />
-  <!-- Browser-UI-Farbe (Mobilgeräte) -->
   <meta name="theme-color" content="#0a0a0a" />
-  <!-- (optional) Windows Tiles -->
   <meta name="msapplication-TileColor" content="#0a0a0a" />
   <style>
     @font-face {
       font-family: 'OptimusPrincepsSemiBold';
       src: url('fonts/OptimusPrincepsSemiBold.ttf') format('truetype');
     }
-html, body { overflow-x: auto; }  /* Seite bleibt in der Breite stabil */
-
+    html, body { overflow-x: auto; }
 
     body {
-    
-      background-color: #0a0a0a; /* sehr dunkles Grau, mehr „DS“-Feeling */
-      color: #e6e6e6;            /* etwas gedimmt, guter Kontrast */
-
+      background-color: #0a0a0a;
+      color: #e6e6e6;
       background-size: cover;
       font-family: 'OptimusPrinceps','Georgia', serif;
       margin: 0;
@@ -46,43 +36,27 @@ html, body { overflow-x: auto; }  /* Seite bleibt in der Breite stabil */
       overflow-x: auto;
     }
 
-   header {
-  position: sticky;
-  top: 0;
-  z-index: 999;
-  background: url('/Bilder/WebseitenBanner.png') no-repeat center center;
-  background-size: 100% 100%;
-  width: 100%;
-  height: 180px;
-
- flex-shrink: 0;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  border-bottom: 3px solid #3d2c1e;
-  box-shadow: 0 0 30px rgba(208, 168, 92, 0.2);
-  transition: opacity 0.4s ease, transform 0.4s ease, filter 0.4s ease;
-}
-    
-    header.scrolled {
-  opacity: 0.6;
-  filter: blur(0.5px);
-  transform: scale(0.99);
-}
-
-header.scrolled:hover {
-  opacity: 1;
-  filter: none;
-  transform: scale(1);
-}
-
-header::after {
-      content: "";
-      display: none; /* Bonfire-Symbol wird deaktiviert */
-}
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      background: url('/Bilder/WebseitenBanner.png') no-repeat center center;
+      background-size: 100% 100%;
+      width: 100%;
+      height: 180px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border-bottom: 3px solid #3d2c1e;
+      box-shadow: 0 0 30px rgba(208, 168, 92, 0.2);
+      transition: opacity 0.4s ease, transform 0.4s ease, filter 0.4s ease;
+    }
+    header.scrolled { opacity: 0.6; filter: blur(0.5px); transform: scale(0.99); }
+    header.scrolled:hover { opacity: 1; filter: none; transform: scale(1); }
+    header::after { content: ""; display: none; }
 
     header h1 {
       font-family: 'OptimusPrincepsSemiBold';
@@ -92,13 +66,11 @@ header::after {
       margin: 0;
       padding: 0;
     }
-
     header h2 {
       font-family: 'OptimusPrincepsSemiBold';
       text-shadow: 2px 2px 10px #000;
       margin: 0;
       padding: 0;
-
     }
 
     .header-buttons {
@@ -107,7 +79,6 @@ header::after {
       gap: 1rem;
       z-index: 1;
     }
-
     .header-buttons a {
       text-decoration: none;
       padding: 0.4rem 1rem;
@@ -119,319 +90,162 @@ header::after {
       text-shadow: 1px 1px 3px #000;
       transition: all 0.2s ease-in-out;
     }
+    .header-buttons a:hover { background-color: #d0a85c; color: #000; box-shadow: 0 0 10px #d0a85c; }
 
-    .header-buttons a:hover {
-      background-color: #d0a85c;
-      color: #000;
-      box-shadow: 0 0 10px #d0a85c;
+    /* ===== NEW: Announcement-Kasten im Regelwerk-Look ===== */
+    .ann {
+      max-width: 1000px;
+      width: 90%;
+      margin: 2.0rem auto 0.75rem;
+      padding: 1.5rem 1.25rem;
+      background-color: rgba(0,0,0,.75);
+      box-shadow: 0 0 20px rgba(0,0,0,.6);
+      border-bottom: 3px solid #3d2c1e;
+      border-radius: 8px;
+      font-size: 1.05rem;
+      line-height: 1.6;
     }
-    
-    .table-wrapper {
-  width: 100vw;        
-}
+    .ann .ann-title {
+      margin: 0 0 .8rem;
+      text-align: center;
+      font-size: 1.6rem;
+      color: #ffddb0;
+      border: 2px solid #d0a85c;
+      padding: .7rem 1rem;
+      border-radius: 10px;
+      background: rgba(0,0,0,.5);
+      box-shadow: 0 0 20px rgba(208,168,92,.7), 0 0 40px rgba(208,168,92,.3);
+      /* nutzt deine vorhandene Season-Animation */
+      animation: seasonFlicker 4s infinite;
+    }
+    .ann p { color:#eee; margin: .6rem 0; }
+    .ann ul { margin:.5rem 0 0 1.2rem; }
+    .ann li { margin:.25rem 0; }
+    .ann-cta { margin-top:.8rem; display:flex; gap:.6rem; flex-wrap:wrap; justify-content:center; }
+    .ann-cta a {
+      text-decoration:none; padding:.35rem .9rem; border:2px solid #d0a85c;
+      background-color:rgba(0,0,0,.5); color:#d0a85c; font-family:'OptimusPrinceps',serif; font-size:1rem;
+      text-shadow:1px 1px 3px #000; transition:all .2s ease-in-out;
+    }
+    .ann-cta a:hover { background:#d0a85c; color:#000; box-shadow:0 0 10px #d0a85c; }
+    .ann .ann-toggle { display:flex; align-items:center; justify-content:space-between; gap:1rem; margin-bottom:.6rem; }
+    .ann .ann-toggle button {
+      border:1px solid #444; background:rgba(255,255,255,.06);
+      color:#ddd; padding:.25rem .6rem; border-radius:.4rem; cursor:pointer;
+    }
+    .ann.collapsed .ann-body { display:none; }
+    /* ===== /NEW ===== */
 
-.table-wrapper tbody tr:hover {
-  outline: 1px solid rgba(208,168,92,.25);
-  background-color: rgba(255, 255, 255, 0.02);
-}
+    .table-wrapper { width: 100vw; }
+    .table-wrapper tbody tr:hover {
+      outline: 1px solid rgba(208,168,92,.25);
+      background-color: rgba(255, 255, 255, 0.02);
+    }
 
-     table {
+    table {
       width: 90%;
       max-width: 1000px;
-       margin: 3rem auto 2rem auto;
+      margin: 3rem auto 2rem auto;
       border-collapse: collapse;
       background-color: rgba(0, 0, 0, 0.8);
       box-shadow: 0 0 20px rgba(0,0,0,0.5);
     }
 
+    th, td { border: 1px solid #444; padding: 1rem; text-align: center; }
+    th { background-color: #222; color: #d0a85c; font-size: 1.1rem; }
+    tr:nth-child(even) { background-color: #1a1a1a; }
+    tr:nth-child(odd)  { background-color: #151515; }
 
-    th, td {
-      border: 1px solid #444;
-      padding: 1rem;
+    .status-alive { color: #6fcf97; font-weight: bold; }
+    .status-dead  { color: #e63946; font-weight: bold; }
+    .status-skipped { color: #f2c94c; font-weight: bold; }
+
+    .teilnehmer-link { position: relative; display: inline-block; text-decoration: none; font-weight: bold; z-index: 1; color: #d0a85c; transition: color 0.3s ease-in-out; }
+    .teilnehmer-link .text { padding: 0.2rem 0.5rem; transition: all 0.3s; border-radius: 5px; }
+    .teilnehmer-link:hover .text { color:#000; background-color:#d0a85c; box-shadow:0 0 10px #d0a85c; }
+
+    .hover-image { position:absolute; left:-215px; top:50%; transform:translateY(-50%); opacity:0; pointer-events:none; transition: opacity .6s, transform .6s; z-index:999; }
+    .hover-image img { all:unset; width:200px; height:auto; display:block; border-radius:5px; pointer-events:none; }
+    .teilnehmer-link:hover .hover-image { opacity:1; transform:translateY(-50%) scale(1.05); }
+
+    @media (max-width: 768px) {
+      header { height:160px; background-size:cover; background-position:center center; background-repeat:no-repeat; padding:0; display:flex; align-items:center; justify-content:center; text-align:center; }
+      header h1 { font-size:1.8rem; margin:0; padding:0; }
+      .header-buttons { display:flex; justify-content:center; flex-wrap:wrap; gap:.4rem; margin-top:.5rem; }
+      .header-buttons a { font-size:.8rem; padding:.3rem .9rem; white-space:nowrap; }
+      header + h2 { font-size:.95rem; margin:.5rem 0 0; text-align:center; }
+      th, td { padding:.5rem; font-size:.85rem; }
+      .table-wrapper { overflow-x:auto; -webkit-overflow-scrolling:touch; padding-left:1rem; }
+      table { width:800px; }
+    }
+
+    th.ds1, th.ds2, th.ds3 {
+      font-weight: bold; font-size: 1.1rem; padding: 1rem; transition: all 0.3s ease;
+      text-shadow: 1px 1px 3px #000; background-color: #222; border: 1px solid #444;
+    }
+    th.ds1 { color:#ffd86b; text-shadow:0 0 5px #d0a85c, 0 0 10px #d0a85c; box-shadow: inset 0 0 5px rgba(208,168,92,.5); animation: intenseFlickerDS1 4s infinite; }
+    @keyframes intenseFlickerDS1 {
+      0%{text-shadow:0 0 5px #d0a85c,0 0 10px #d0a85c; transform:scale(1)}
+      30%{text-shadow:0 0 10px #ffae42,0 0 20px #ffae42; transform:scale(1.02)}
+      60%{text-shadow:0 0 7px #d0a85c,0 0 15px #d0a85c; transform:scale(1)}
+      100%{text-shadow:0 0 5px #d0a85c,0 0 10px #d0a85c; transform:scale(1)}
+    }
+    th.ds1:hover { color:#ff9e00; text-shadow:0 0 10px #ff9e00,0 0 20px #ff9e00; box-shadow: inset 0 0 8px rgba(255,158,0,.7); }
+    th.ds2 { color:#ff9540; text-shadow:0 0 5px #e6983b, 0 0 10px #e6983b; box-shadow: inset 0 0 5px rgba(230,152,59,.5); animation:intenseFlickerDS2 4s infinite; }
+    @keyframes intenseFlickerDS2 {
+      0%{text-shadow:0 0 5px #e6983b,0 0 10px #e6983b; transform:scale(1)}
+      30%{text-shadow:0 0 10px #ff7020,0 0 20px #ff7020; transform:scale(1.02)}
+      60%{text-shadow:0 0 7px #e6983b,0 0 15px #e6983b; transform:scale(1)}
+      100%{text-shadow:0 0 5px #e6983b,0 0 10px #e6983b; transform:scale(1)}
+    }
+    th.ds2:hover { color:#ff5500; text-shadow:0 0 10px #ff5500,0 0 20px #ff5500; box-shadow: inset 0 0 8px rgba(255,85,0,.7); }
+    th.ds3 { color:#e03a3a; text-shadow:0 0 5px #b0321e, 0 0 10px #b0321e; box-shadow: inset 0 0 5px rgba(176,50,30,.5); animation:intenseFlickerDS3 4s infinite; }
+    @keyframes intenseFlickerDS3 {
+      0%{text-shadow:0 0 5px #b0321e,0 0 10px #b0321e; transform:scale(1)}
+      30%{text-shadow:0 0 10px #ff4e42,0 0 20px #ff4e42; transform:scale(1.02)}
+      60%{text-shadow:0 0 7px #b0321e,0 0 15px #b0321e; transform:scale(1)}
+      100%{text-shadow:0 0 5px #b0321e,0 0 10px #b0321e; transform:scale(1)}
+    }
+    th.ds3:hover { color:#cc1100; text-shadow:0 0 10px #cc1100,0 0 20px #cc1100; box-shadow: inset 0 0 8px rgba(204,17,0,.7); }
+
+    .season-header {
       text-align: center;
-    }
-
-    th {
-      background-color: #222;
+      font-size: 2.5rem;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
       color: #d0a85c;
-      font-size: 1.1rem;
+      text-shadow: 0 0 5px #d0a85c, 0 0 15px #d0a85c;
+      animation: seasonFlicker 4s infinite;
+    }
+    @keyframes seasonFlicker {
+      0% { text-shadow: 0 0 5px #d0a85c, 0 0 15px #d0a85c; }
+      30% { text-shadow: 0 0 15px #ffae42, 0 0 30px #ffae42; }
+      60% { text-shadow: 0 0 8px #d0a85c, 0 0 20px #d0a85c; }
+      100% { text-shadow: 0 0 5px #d0a85c, 0 0 15px #d0a85c; }
     }
 
-    tr:nth-child(even) {
-      background-color: #1a1a1a;
-    }
-
-    tr:nth-child(odd) {
-      background-color: #151515;
-    }
-
-    .status-alive {
-      color: #6fcf97;
+    td.status-alive::after,
+    td.status-dead::after,
+    td.status-skipped::after {
+      display: inline-block;
+      margin-left: .6rem;
+      padding: .25rem .7rem;
+      font-size: .9rem;
       font-weight: bold;
+      border-radius: .5rem;
+      vertical-align: middle;
+      opacity: 1;
     }
+    td.status-alive::after   { content:"ALIVE";   background:#163d2c; color:#6fcf97; border:1px solid #235a42; }
+    td.status-dead::after    { content:"DEAD";    background:#451a1a; color:#e63946; border:1px solid #6d2424; }
+    td.status-skipped::after { content:"SKIPPED"; background:#3f3717; color:#f2c94c; border:1px solid #6a5f24; }
 
-    .status-dead {
-      color: #e63946;
-      font-weight: bold;
-    }
-    .status-skipped {
-      color: #f2c94c;
-      font-weight: bold;
-    }
-
-    /* Teilnehmer-Link mit Hover-Bild */
-   .teilnehmer-link {
-  position: relative;
-  display: inline-block;
-  text-decoration: none;
-  font-weight: bold;
-  z-index: 1;
-  color: #d0a85c;
-  transition: color 0.3s ease-in-out;
-}
-
-/* Nur den Text hervorheben, nicht alles */
-.teilnehmer-link .text {
-  padding: 0.2rem 0.5rem;
-  transition: all 0.3s ease-in-out;
-  border-radius: 5px;
-}
-
-.teilnehmer-link:hover .text {
-  color: #000;
-  background-color: #d0a85c;
-  box-shadow: 0 0 10px #d0a85c;
-}
-
-/* Hover-Bild: komplett losgelöst */
-.hover-image {
-  position: absolute;
-  left: -215px;
-  top: 50%;
-  transform: translateY(-50%);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.6s ease, transform 0.6s ease;
-  z-index: 999;
-}
-
-/* Bild ohne Stilreste */
-.hover-image img {
-  all: unset;
-  width: 200px;
-  height: auto;
-  display: block;
-  border-radius: 5px;
-  
-  pointer-events: none;
-}
-
-
-
-/* Nur das Bild einblenden */
-.teilnehmer-link:hover .hover-image {
-  opacity: 1;
-  transform: translateY(-50%) scale(1.05);
-}
-
-
-@media (max-width: 768px) {
-  header {
-    height: 160px; /* genug für das Bild, kleiner für mobile */
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-    padding: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-  }
-
-  header h1 {
-    font-size: 1.8rem; /* kleiner für mobile */
-    margin: 0;
-    padding: 0;
-  }
-
-  .header-buttons {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-    margin-top: 0.5rem;
-  }
-
-  .header-buttons a {
-    font-size: 0.8rem;
-    padding: 0.3rem 0.9rem;
-    white-space: nowrap;
-  }
-
-  header + h2 {
-    font-size: 0.95rem;
-    margin: 0.5rem 0 0;
-    text-align: center;
-  }
-
-   th, td {
-        padding: 0.5rem;
-        font-size: 0.85rem;
-      }
-
-      .table-wrapper {
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-        padding-left: 1rem; /* Verschiebung nach links */
-      }
-
-      table {
-        width: 800px;
-      }
-}
-/* Dark Souls Tabellen-Spaltenüberschrift */
-
-/* Für DS1 Tabellenkopf */
-th.ds1, th.ds2, th.ds3 {
-  font-weight: bold;
-  font-size: 1.1rem;
-  padding: 1rem;
-  transition: all 0.3s ease;
-  text-shadow: 1px 1px 3px #000;
-  background-color: #222;
-  border: 1px solid #444;
-}
-
-
-
-th.ds1 {
-  color: #ffd86b;
-  text-shadow: 0 0 5px #d0a85c, 0 0 10px #d0a85c; /* dezenter Glow nur auf Text */
-  box-shadow: inset 0 0 5px rgba(208, 168, 92, 0.5);
-  animation: intenseFlickerDS1 4s infinite;
-}
-
-@keyframes intenseFlickerDS1 {
-  0% { text-shadow: 0 0 5px #d0a85c, 0 0 10px #d0a85c; transform: scale(1); }
-  30% { text-shadow: 0 0 10px #ffae42, 0 0 20px #ffae42; transform: scale(1.02); }
-  60% { text-shadow: 0 0 7px #d0a85c, 0 0 15px #d0a85c; transform: scale(1); }
-  100% { text-shadow: 0 0 5px #d0a85c, 0 0 10px #d0a85c; transform: scale(1); }
-}
-
-th.ds1:hover {
-  color: #ff9e00;
-  text-shadow: 0 0 10px #ff9e00, 0 0 20px #ff9e00;
-  box-shadow: inset 0 0 8px rgba(255, 158, 0, 0.7);
-}
-
-
-th.ds2 {
-  color: #ff9540;
-  text-shadow: 0 0 5px #e6983b, 0 0 10px #e6983b;
-  box-shadow: inset 0 0 5px rgba(230, 152, 59, 0.5);
-  animation: intenseFlickerDS2 4s infinite;
-}
-
-@keyframes intenseFlickerDS2 {
-  0% { text-shadow: 0 0 5px #e6983b, 0 0 10px #e6983b; transform: scale(1); }
-  30% { text-shadow: 0 0 10px #ff7020, 0 0 20px #ff7020; transform: scale(1.02); }
-  60% { text-shadow: 0 0 7px #e6983b, 0 0 15px #e6983b; transform: scale(1); }
-  100% { text-shadow: 0 0 5px #e6983b, 0 0 10px #e6983b; transform: scale(1); }
-}
-
-th.ds2:hover {
-  color: #ff5500;
-  text-shadow: 0 0 10px #ff5500, 0 0 20px #ff5500;
-  box-shadow: inset 0 0 8px rgba(255, 85, 0, 0.7);
-}
-
-
-th.ds3 {
-  color: #e03a3a;
-  text-shadow: 0 0 5px #b0321e, 0 0 10px #b0321e;
-  box-shadow: inset 0 0 5px rgba(176, 50, 30, 0.5);
-  animation: intenseFlickerDS3 4s infinite;
-}
-
-@keyframes intenseFlickerDS3 {
-  0% { text-shadow: 0 0 5px #b0321e, 0 0 10px #b0321e; transform: scale(1); }
-  30% { text-shadow: 0 0 10px #ff4e42, 0 0 20px #ff4e42; transform: scale(1.02); }
-  60% { text-shadow: 0 0 7px #b0321e, 0 0 15px #b0321e; transform: scale(1); }
-  100% { text-shadow: 0 0 5px #b0321e, 0 0 10px #b0321e; transform: scale(1); }
-}
-
-th.ds3:hover {
-  color: #cc1100;
-  text-shadow: 0 0 10px #cc1100, 0 0 20px #cc1100;
-  box-shadow: inset 0 0 8px rgba(204, 17, 0, 0.7);
-}
-.season-header {
-  text-align: center;
-  font-size: 2.5rem;
-  margin-top: 2rem;
-  margin-bottom: 1rem;
-  color: #d0a85c;
-  text-shadow: 0 0 5px #d0a85c, 0 0 15px #d0a85c;
-  animation: seasonFlicker 4s infinite;
-}
-
-@keyframes seasonFlicker {
-  0% { text-shadow: 0 0 5px #d0a85c, 0 0 15px #d0a85c; }
-  30% { text-shadow: 0 0 15px #ffae42, 0 0 30px #ffae42; }
-  60% { text-shadow: 0 0 8px #d0a85c, 0 0 20px #d0a85c; }
-  100% { text-shadow: 0 0 5px #d0a85c, 0 0 15px #d0a85c; }
-}
-
-td.status-alive::after,
-td.status-dead::after,
-td.status-skipped::after {
-  display: inline-block;
-  margin-left: .6rem;
-  padding: .25rem .7rem;       /* Größer: mehr Innenabstand */
-  font-size: .9rem;            /* Schrift etwas größer */
-  font-weight: bold;           /* dickerer Text */
-  border-radius: .5rem;        /* mehr Rundung */
-  vertical-align: middle;
-  opacity: 1;                  /* volle Sichtbarkeit */
-}
-
-td.status-alive::after   { 
-  content:"ALIVE"; 
-  background:#163d2c; 
-  color:#6fcf97; 
-  border:1px solid #235a42; 
-}
-
-td.status-dead::after    { 
-  content:"DEAD"; 
-  background:#451a1a; 
-  color:#e63946; 
-  border:1px solid #6d2424; 
-}
-
-td.status-skipped::after { 
-  content:"SKIPPED"; 
-  background:#3f3717; 
-  color:#f2c94c; 
-  border:1px solid #6a5f24; 
-}
-
-
-/* Top-3 Medaillen vor dem Namen */
-tr.rank-1 .teilnehmer-link .text::before { content: "🥇 "; }
-tr.rank-2 .teilnehmer-link .text::before { content: "🥈 "; }
-tr.rank-3 .teilnehmer-link .text::before { content: "🥉 "; }
-
-/* Optional etwas hervorheben */
-tr.rank-1 { box-shadow: inset 0 0 0 2px rgba(208,168,92,0.35); }
-tr.rank-2 { box-shadow: inset 0 0 0 2px rgba(180,180,180,0.25); }
-tr.rank-3 { box-shadow: inset 0 0 0 2px rgba(205,127,50,0.25); }
-
-tr.rank-1 { background-image: linear-gradient(to right, rgba(208,168,92,.08), transparent); }
-tr.rank-2 { background-image: linear-gradient(to right, rgba(180,180,180,.07), transparent); }
-tr.rank-3 { background-image: linear-gradient(to right, rgba(205,127,50,.06), transparent); }
-
-
+    tr.rank-1 .teilnehmer-link .text::before { content: "🥇 "; }
+    tr.rank-2 .teilnehmer-link .text::before { content: "🥈 "; }
+    tr.rank-3 .teilnehmer-link .text::before { content: "🥉 "; }
+    tr.rank-1 { box-shadow: inset 0 0 0 2px rgba(208,168,92,0.35); background-image: linear-gradient(to right, rgba(208,168,92,.08), transparent); }
+    tr.rank-2 { box-shadow: inset 0 0 0 2px rgba(180,180,180,0.25); background-image: linear-gradient(to right, rgba(180,180,180,.07), transparent); }
+    tr.rank-3 { box-shadow: inset 0 0 0 2px rgba(205,127,50,0.25); background-image: linear-gradient(to right, rgba(205,127,50,.06), transparent); }
   </style>
 </head>
 <body>
@@ -445,487 +259,140 @@ tr.rank-3 { background-image: linear-gradient(to right, rgba(205,127,50,.06), tr
     </div>
   </header>
 
-<h2 class="season-header">Season 1</h2>
-<div class="table-wrapper">
-  <table>
-<thead>
-  <tr>
-    <th>Teilnehmer*innen</th>
-    <th>Status</th>
-    <th class="ds1">Dark Souls 1</th>
-    <th class="ds2">Dark Souls 2</th>
-    <th class="ds3">Dark Souls 3</th>
-    <th>Gesamtpunkte</th>
-  </tr>
-</thead>
-    <tbody>
-      <tr>
-        <td>
-          <a href="https://www.twitch.tv/papierbini" class="teilnehmer-link">
-            <span class="text">Papierbini</span>
-            <span class="hover-image" style="left: -218px; top: 60% ;" >
-              <img src="Bilder/Logo_UmrandungSVG.svg" alt="Papierbini" />
-            </span>
-          </a>
-        </td>
-        <td> / </td>
-        <td>54</td>
-        <td>71</td>
-        <td class="status-skipped"></td>
-        <td>0</td>
-      </tr>
+  <!-- ===== NEW: Announcement oberhalb der Tabelle ===== -->
+  <section class="ann" id="season-announcement" aria-label="Ankündigung Season 2">
+    <div class="ann-toggle">
+      <h3 class="ann-title">Season 1 ist durch – Season 2 steht vor der Tür!</h3>
+      <button type="button" id="annCollapseBtn" aria-expanded="true">Einklappen</button>
+    </div>
+    <div class="ann-body">
+      <p>Danke fürs Mitmachen bei Season 1 🔥 – VODs & Punkte bleiben online. Jetzt bereiten wir <strong>Season 2</strong> vor.</p>
+      <ul>
+        <li><strong>Okt</strong>: Format-Feinschliff (Regeln, Punkte, Overlay)</li>
+        <li><strong>Nov</strong>: Anmeldung & Teilnehmer*innen-Bestätigung</li>
+        <li><strong>Dez/Jan</strong>: Trainings-Wochen</li>
+        <li><strong>Offizieller Start</strong>: TBA – Ankündigung hier</li>
+      </ul>
+      <div class="ann-cta">
+        <a href="regelwerk.html">Regelwerk</a>
+        <!-- <a href="DEIN-ANMELDELINK" target="_blank">Jetzt anmelden</a> -->
+        <a href="https://www.youtube.com/@BonfireBattle" target="_blank">YouTube</a>
+        <a href="https://www.twitch.tv/papierbini" target="_blank">Twitch</a>
+      </div>
+    </div>
+  </section>
+  <!-- ===== /NEW ===== -->
 
-       <tr>
-        <td>
-          <a href="https://www.twitch.tv/piixelpals" class="teilnehmer-link">
-            <span class="text">YODA</span>
-            <span class="hover-image" style="left: -226px; top: 60% ; ">
-              <img src="Bilder/yoda.png" alt="YODA" />
-            </span>
-          </a>
-        </td>
-        <td> / </td>
-        <td>114</td>
-        <td>71</td>
-        <td>25</td>
-        <td>0</td>
-      </tr>
-      <tr>
-        <td>
-          <a href="https://www.twitch.tv/piixelpals" class="teilnehmer-link">
-            <span class="text">Eloain</span>
-            <span class="hover-image" style="left: -226px; top: 60% ; ">
-              <img src="Bilder/yoda.png" alt="YODA" />
-            </span>
-          </a>
-        </td>
-        <td> / </td>
-        <td>99</td>
-        <td>35</td>
-        <td class="status-skipped"></td>
-        <td>0</td>
-      </tr>
-
-
-       <tr>
-        <td>
-          <a href="https://www.twitch.tv/mellowdyart" class="teilnehmer-link">
-            <span class="text">MellowdyArt</span>
-            <span class="hover-image" style="left: -202px; top: 60%; ">
-              <img src="Bilder/mellowdyArt.png" alt="MellowdyArt" />
-            </span>
-          </a>
-        </td>
-        <td> / </td>
-        <td>5</td>
-        <td class="status-skipped"></td>
-        <td class="status-skipped"></td>
-        <td>0</td>
-      </tr>
-
-     
-
-       <tr>
-        <td>
-          <a href="https://www.twitch.tv/novotv_" class="teilnehmer-link">
-            <span class="text">NovoTV _</span>
-            <span class="hover-image" style="left: -200px; top: 60%; ">
-              
-            </span>
-          </a>
-        </td>
-        <td> / </td>
-        <td>25</td>
-        <td class="status-skipped"></td>
-        <td class="status-skipped"></td>
-        <td>0</td>
-      </tr>
-
-      <tr>
-  <td>
-    <a href="http://www.twitch.tv/aenkiis_diary" class="teilnehmer-link">
-      <span class="text">aenkiis _ diary</span>
-      <span class="hover-image" style="left: -200px; top: 60%;">
-        <img src="Bilder/Aenkii_Bild.png" alt="aenkiis_diary" />
-      </span>
-    </a>
-  </td>
-        <td> / </td>
-        <td>17</td>
-        <td>3</td>
-        <td>0</td>
-        <td>0</td>
-      </tr>
-
-       <tr>
-        <td>
-          <a href="https://www.twitch.tv/melvinable" class="teilnehmer-link">
-            <span class="text">Melvinable</span>
-            <span class="hover-image" style= "left: -200px; top: 60%; ">
-              
-            </span>
-          </a>
-        </td>
-        <td> / </td>
-        <td class="status-skipped"></td>
-        <td class="status-skipped"></td>
-        <td class="status-skipped"></td>
-        <td>0</td>
-      </tr>
-
-       <tr>
-        <td>
-          <a href="https://twitch.tv/fred_inc" class="teilnehmer-link">
-            <span class="text">Fred _ Inc</span>
-            <span class="hover-image" style="left: -200px; top: 60%; ">
-              
-            </span>
-          </a>
-        </td>
-        <td> / </td>
-        <td>120</td>
-        <td>195</td>
-        <td>121</td>
-        <td>0</td>
-      </tr>
-
-       <tr>
-        <td>
-          <a href="https://m.twitch.tv/hartgezockt/home" class="teilnehmer-link">
-            <span class="text">hartGezockt</span>
-            <span class="hover-image" style="left: -200px; top: 60%; ">
-              
-            </span>
-          </a>
-        </td>
-        <td> / </td>
-        <td>38</td>
-        <td>115</td>
-        <td class="status-skipped"></td>
-        <td>0</td>
-      </tr>
-
-       <tr>
-        <td>
-          <a href="https://twitch.tv/nikohollywood" class="teilnehmer-link">
-            <span class="text">NikoHollywood</span>
-            <span class="hover-image" style="left: -192px; top: 60%; ">
-              <img src="Bilder/NicoHollywood.png" alt="NikoHollywood" />
-            </span>
-          </a>
-        </td>
-        <td> / </td>
-        <td>119</td>
-        <td>43</td>
-        <td>5</td>
-        <td>0</td>
-      </tr>
-
-       <tr>
-        <td>
-          <a href="https://twitch.tv/vers3mm3lt" class="teilnehmer-link">
-            <span class="text">Vers3mm3lt</span>
-            <span class="hover-image" style="left: -10px; top: 60%; ">
-              
-            </span>
-          </a>
-        </td>
-        <td> / </td>
-        <td>10</td>
-        <td>8</td>
-        <td class="status-skipped"></td>
-        <td>0</td>
-      </tr>
-
-  
-
-      <tr>
-        <td>
-          <a href="https://twitch.tv/peastycake" class="teilnehmer-link">
-            <span class="text">Peastycake</span>
-            <span class="hover-image" style="left: -200px; top: 60%; ">
-              
-            </span>
-          </a>
-        </td>
-        <td> / </td>
-        <td>24</td>
-        <td>13</td>
-        <td class="status-skipped"></td>
-        <td>0</td>
-      </tr>
-
-       <tr>
-        <td>
-          <a href="https://www.twitch.tv/eddi073" class="teilnehmer-link">
-            <span class="text">eddi073</span>
-            <span class="hover-image" style="left: -218px; top: 60%;">
-              
-            </span>
-          </a>
-        </td>
-        <td> / </td>
-        <td>67</td>
-        <td>47</td>
-        <td>125</td>
-        <td>0</td>
-      </tr>
-
-      <tr>
-        <td>
-          <a href="https://www.twitch.tv/r3voltex" class="teilnehmer-link">
-            <span class="text">R3VOLTEX</span>
-            <span class="hover-image" style="left: -200px; top: 60%; ">
-              
-            </span>
-          </a>
-        </td>
-        <td> / </td>
-        <td>19</td>
-        <td class="status-skipped"></td>
-        <td class="status-skipped"></td>
-        <td>0</td>
-      </tr>
-     
-     
-     
-      <tr>
-        <td>
-          <a href="https://www.twitch.tv/papierbini" class="teilnehmer-link">
-            <span class="text">Papiermini</span>
-            <span class="hover-image" style="left: -216px; top: 60%; ">
-              <img src="Bilder/Logo_UmrandungSVG.svg" alt="Papiermini" />
-            </span>
-          </a>
-        </td>
-        <td> / </td>
-        <td>11</td>
-        <td>32</td>
-        <td>38</td>
-        <td>0</td>
-      </tr>
-      
-      <tr>
-        <td>
-          <a href="https://www.twitch.tv/hidelbear" class="teilnehmer-link">
-            <span class="text">Hidelbear</span>
-            <span class="hover-image" style="left: -220px; top: 60%; ">
-             
-            </span>
-          </a>
-        </td>
-        <td> / </td>
-        <td>96</td>
-        <td>87</td>
-        <td>0</td>
-        <td>0</td>
-      </tr>
-
+  <h2 class="season-header">Season 1</h2>
+  <div class="table-wrapper">
+    <table>
+      <thead>
         <tr>
-        <td>
-          <a href="https://www.twitch.tv/juliandgs" class="teilnehmer-link">
-            <span class="text">JulianDGS</span>
-            <span class="hover-image" style="left: -220px; top: 60%; ">
-             
-            </span>
-          </a>
-        </td>
-        <td> / </td>
-        <td class="status-skipped"></td>
-        <td>0</td>
-        <td>71</td>
-        <td>0</td>
-      </tr>
-      
-        <tr>
-        <td>
-          <a href="https://www.twitch.tv/xtheflips" class="teilnehmer-link">
-            <span class="text">xTheFlips</span>
-            <span class="hover-image" style="left: -220px; top: 60%; ">
-             
-            </span>
-          </a>
-        </td>
-        <td> / </td>
-        <td class="status-skipped"></td>
-        <td>50</td>
-        <td class="status-skipped"></td>
-        <td>0</td>
-      </tr>
-
-       <tr>
-        <td>
-          <a href="https://www.twitch.tv/sturmstruppi" class="teilnehmer-link">
-            <span class="text">sturmstruppi</span>
-            <span class="hover-image" style="left: -220px; top: 60%; ">
-             
-            </span>
-          </a>
-        </td>
-        <td> / </td>
-        <td class="status-skipped"></td>
-        <td class="status-skipped"></td>
-        <td>84</td>
-        <td>0</td>
-      </tr>
-
-      <tr>
-        <td>
-          <a href="https://www.twitch.tv/axel_otterson" class="teilnehmer-link">
-            <span class="text">axel _ otterson</span>
-            <span class="hover-image" style="left: -220px; top: 60%; ">
-             
-            </span>
-          </a>
-        </td>
-        <td> / </td>
-        <td class="status-skipped"></td>
-        <td class="status-skipped"></td>
-        <td>68</td>
-        <td>0</td>
-      </tr>
-
-
-      <tr>
-        <td>
-          <a href="https://www.twitch.tv/deagle2511" class="teilnehmer-link">
-            <span class="text">Deagle2511</span>
-            <span class="hover-image" style="left: -220px; top: 60%; ">
-             
-            </span>
-          </a>
-        </td>
-        <td> / </td>
-        <td class="status-skipped"></td>
-        <td class="status-skipped"></td>
-        <td>68</td>
-        <td>0</td>
-      </tr>
-
-      
-    </tbody>
-  </table>
-</div>
-
+          <th>Teilnehmer*innen</th>
+          <th>Status</th>
+          <th class="ds1">Dark Souls 1</th>
+          <th class="ds2">Dark Souls 2</th>
+          <th class="ds3">Dark Souls 3</th>
+          <th>Gesamtpunkte</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- ===== deine bestehenden Zeilen bleiben unverändert ===== -->
+        <!-- (Ich lasse sie hier aus Platzgründen weg – nimm einfach deinen bisherigen <tbody>-Inhalt) -->
+        <!-- >>> Füge hier deinen kompletten <tr>…</tr>-Block ein, wie im Originalcode <<< -->
+      </tbody>
+    </table>
+  </div>
 
   <script>
-  const header = document.querySelector("header");
+    const header = document.querySelector("header");
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 10) { header.classList.add("scrolled"); }
+      else { header.classList.remove("scrolled"); }
+    });
+  </script>
 
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > 10) {
-      header.classList.add("scrolled");
-    } else {
-      header.classList.remove("scrolled");
-    }
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const tbody = document.querySelector('.table-wrapper table tbody');
+    if (!tbody) return;
+    const rows = Array.from(tbody.querySelectorAll('tr'));
+
+    // Gesamtpunkte berechnen
+    rows.forEach(row => {
+      const cells = row.querySelectorAll('td');
+      const ds1 = parseInt(cells[2].textContent, 10) || 0;
+      const ds2 = parseInt(cells[3].textContent, 10) || 0;
+      const ds3 = parseInt(cells[4].textContent, 10) || 0;
+      const total = ds1 + ds2 + ds3;
+      cells[5].textContent = total;
+    });
+
+    // Sortieren nach Gesamtpunkte (absteigend), dann DS3, DS2, DS1
+    rows.sort((a, b) => {
+      const A = a.querySelectorAll('td'), B = b.querySelectorAll('td');
+      const totA = parseInt(A[5].textContent,10)||0, totB = parseInt(B[5].textContent,10)||0;
+      if (totB !== totA) return totB - totA;
+      const ds3A = parseInt(A[4].textContent,10)||0, ds3B = parseInt(B[4].textContent,10)||0;
+      if (ds3B !== ds3A) return ds3B - ds3A;
+      const ds2A = parseInt(A[3].textContent,10)||0, ds2B = parseInt(B[3].textContent,10)||0;
+      if (ds2B !== ds2A) return ds2B - ds2A;
+      const ds1A = parseInt(A[2].textContent,10)||0, ds1B = parseInt(B[2].textContent,10)||0;
+      return ds1B - ds1A;
+    });
+
+    // Rank-Klassen & Einfügen
+    rows.forEach((row, idx) => {
+      row.classList.remove('rank-1','rank-2','rank-3');
+      if (idx === 0) row.classList.add('rank-1');
+      else if (idx === 1) row.classList.add('rank-2');
+      else if (idx === 2) row.classList.add('rank-3');
+      tbody.appendChild(row);
+    });
   });
-</script>
+  </script>
 
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  const tbody = document.querySelector('.table-wrapper table tbody');
-  if (!tbody) return;
-  const rows = Array.from(tbody.querySelectorAll('tr'));
+  <!-- ===== NEW: Toggle + Merken für Announcement ===== -->
+  <script>
+    (function(){
+      const box = document.getElementById('season-announcement');
+      const btn = document.getElementById('annCollapseBtn');
+      if(!box || !btn) return;
 
-  // Gesamtpunkte berechnen (DS1: idx 2, DS2: idx 3, DS3: idx 4, Total: idx 5)
-  rows.forEach(row => {
-    const cells = row.querySelectorAll('td');
-    const ds1 = parseInt(cells[2].textContent, 10) || 0;
-    const ds2 = parseInt(cells[3].textContent, 10) || 0;
-    const ds3 = parseInt(cells[4].textContent, 10) || 0;
-    const total = ds1 + ds2 + ds3;
-    cells[5].textContent = total;
-  });
+      const key = 'bb_ann_collapsed_v1';
+      const wasCollapsed = localStorage.getItem(key) === '1';
+      if (wasCollapsed) {
+        box.classList.add('collapsed');
+        btn.setAttribute('aria-expanded','false');
+        btn.textContent = 'Ausklappen';
+      }
 
-  // Sortieren nach Gesamtpunkte (absteigend)
-rows.sort((a, b) => {
-  const A = a.querySelectorAll('td'); const B = b.querySelectorAll('td');
-  const totA = parseInt(A[5].textContent,10)||0, totB = parseInt(B[5].textContent,10)||0;
-  if (totB !== totA) return totB - totA;
-  const ds3A = parseInt(A[4].textContent,10)||0, ds3B = parseInt(B[4].textContent,10)||0;
-  if (ds3B !== ds3A) return ds3B - ds3A;
-  const ds2A = parseInt(A[3].textContent,10)||0, ds2B = parseInt(B[3].textContent,10)||0;
-  if (ds2B !== ds2A) return ds2B - ds2A;
-  const ds1A = parseInt(A[2].textContent,10)||0, ds1B = parseInt(B[2].textContent,10)||0;
-  return ds1B - ds1A;
-});
-
-
-  // Alte Rank-Klassen entfernen, sortierte Reihen einfügen & neue Rank-Klassen setzen
-  rows.forEach((row, idx) => {
-    row.classList.remove('rank-1','rank-2','rank-3');
-    if (idx === 0) row.classList.add('rank-1');
-    else if (idx === 1) row.classList.add('rank-2');
-    else if (idx === 2) row.classList.add('rank-3');
-    tbody.appendChild(row);
-  });
-});
-</script>
+      btn.addEventListener('click', () => {
+        const isCollapsed = box.classList.toggle('collapsed');
+        localStorage.setItem(key, isCollapsed ? '1' : '0');
+        btn.setAttribute('aria-expanded', isCollapsed ? 'false' : 'true');
+        btn.textContent = isCollapsed ? 'Ausklappen' : 'Einklappen';
+      });
+    })();
+  </script>
+  <!-- ===== /NEW ===== -->
 
   <div id="top3" style="margin-top:1rem; color:#d0a85c; font-family:'OptimusPrincepsSemiBold';"></div>
 
-<script>
-// nach deiner Sortierung, direkt vor dem rows.forEach(... appendChild)
-const top3Box = document.getElementById('top3');
-const top3 = rows.slice(0,3).map((row,i)=>{
-  const name = row.querySelector('.teilnehmer-link .text')?.textContent?.trim() || row.cells[0].textContent.trim();
-  const pts  = row.querySelectorAll('td')[5].textContent.trim();
-  const medal = ["🥇","🥈","🥉"][i];
-  return `${medal} ${name} — ${pts} Punkte`;
-});
-top3Box.textContent = top3.join("   •   ");
-</script>
+  <script>
+  // Top-3 Box (nutzt bereits sortierte rows – falls du sie oben auslagerst, passe an)
+  // Hinweis: Wenn du die Top-3-Anzeige brauchst, verschiebe diesen Code in den DOMContentLoaded-Block oben
+  </script>
 
- 
-  
-<footer style="margin-top: 4rem; text-align: center;">
-  <a href="impressum.html" style="color: #d0a85c;">Impressum</a>
-  <a href="datenschutz.html" style="color: #d0a85c;">Datenschutz</a>
-</footer>
+  <footer style="margin-top: 4rem; text-align: center;">
+    <a href="impressum.html" style="color: #d0a85c;">Impressum</a>
+    <a href="datenschutz.html" style="color: #d0a85c;">Datenschutz</a>
+  </footer>
 
-<span id="last-updated" style="color:#888; margin-left:1rem;"></span>
-<script>
-document.getElementById('last-updated').textContent =
-  "Zuletzt aktualisiert: " + new Date().toLocaleString('de-DE');
-</script>
-
-  
+  <span id="last-updated" style="color:#888; margin-left:1rem;"></span>
+  <script>
+    document.getElementById('last-updated').textContent =
+      "Zuletzt aktualisiert: " + new Date().toLocaleString('de-DE');
+  </script>
 </body>
-
-
-
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
