@@ -445,11 +445,11 @@ tr.rank-3 { background-image: linear-gradient(to right, rgba(205,127,50,.06), tr
 /* breite, warme Glanzbahn */
 .coming-soon::after{
   left:-40%; width:55%;
-  background:linear-gradient(90deg,
+    background:linear-gradient(90deg,
     rgba(0,0,0,0) 0%,
-    rgba(255,205,150,.16) 30%,
-    rgba(255,215,170,.22) 50%,
-    rgba(255,205,150,.16) 70%,
+    rgba(255,210,160,.12) 28%,
+    rgba(255,255,255,.33) 50%,   /* klarer weißer Kern im Sweep */
+    rgba(255,210,160,.12) 72%,
     rgba(0,0,0,0) 100%
   );
   animation:sweepSoft 6s cubic-bezier(.4,0,.2,1) infinite;
@@ -458,9 +458,9 @@ tr.rank-3 { background-image: linear-gradient(to right, rgba(205,127,50,.06), tr
 /* zweiter, noch weicherer Halo gegenläufig */
 .coming-soon::before{
   left:-30%; width:45%;
-   background:radial-gradient(50% 120% at 50% 50%,
-    rgba(208,168,92,.14) 0%,   /* DS-Gold-Halo */
-    rgba(208,168,92,0) 70%
+    background:radial-gradient(50% 120% at 50% 50%,
+    rgba(255,200,140,.12) 0%,
+    rgba(255,200,140,0) 70%
   );
   animation:sweepSoftReverse 10s cubic-bezier(.4,0,.2,1) infinite;
   opacity:.35;
@@ -481,13 +481,13 @@ tr.rank-3 { background-image: linear-gradient(to right, rgba(205,127,50,.06), tr
    font-size: clamp(1.6rem, 4.5vw + .3rem, 3.8rem); /* größer, skaliert mit Viewport */
   line-height: 1.1;
   animation: glowBreath 6.5s ease-in-out infinite;  /* länger = ruhiger */
- color:#d9482b; /* Rot-Orange */
+   color:#ff8a3d; /* Hauptfarbe: Orange */
   text-shadow:
-    0 0 6px #000,
-    0 0 14px #b0321e,                 /* dunkelrot – innerer Glow */
-    0 0 30px #e6983b,                 /* gold – mittlerer Glow */
-    0 0 68px rgba(208,168,92,.55);    /* DS-Gold – äußerer Halo */
-}
+    0 0 2px #fff,                 /* feiner weißer Kern */
+    0 0 6px #fff,                 /* stärkeres Weiß innen */
+    0 0 14px #ffae42,             /* Amber-Glow */
+    0 0 34px rgba(255,174,66,.75),/* breiter, warmer Halo */
+    0 0 60px rgba(255,160,40,.55);/* äußerer, weicher Schein */
 
 
 
@@ -957,6 +957,7 @@ document.getElementById('last-updated').textContent =
 
 
 </html>
+
 
 
 
