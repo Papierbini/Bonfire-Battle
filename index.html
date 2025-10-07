@@ -431,42 +431,61 @@ tr.rank-1 { background-image: linear-gradient(to right, rgba(208,168,92,.08), tr
 tr.rank-2 { background-image: linear-gradient(to right, rgba(180,180,180,.07), transparent); }
 tr.rank-3 { background-image: linear-gradient(to right, rgba(205,127,50,.06), transparent); }
 
-/* Coming-Soon: Glow + Schimmer */
+/* Coming-Soon: größer, rot, weiches "Breathing" */
 .coming-soon{
   position:relative;
   display:block;
-  margin:1.2rem auto 0.2rem;   /* knapp über der Tabelle */
+  margin:1.6rem auto .4rem;
   text-align:center;
-  font-family:'OptimusPrincepsSemiBold', 'OptimusPrinceps', Georgia, serif;
-  font-size:2.2rem;
-  letter-spacing:.5px;
-  color:#d0a85c;
+  font-family:'OptimusPrincepsSemiBold','OptimusPrinceps',Georgia,serif;
+  font-size:clamp(2.6rem, 4.2vw + 1rem, 4.2rem); /* größer */
+  letter-spacing:.6px;
+  color:#e03a3a; /* rötlicher Grundton */
   text-shadow:
-    0 0 4px #000,
-    0 0 6px #d0a85c,
-    0 0 12px #d0a85c,
-    0 0 22px rgba(208,168,92,.6);
-  animation: glowPulse 4s ease-in-out infinite;
-  overflow:hidden; /* für den Schimmer-Sweep */
+    0 0 5px #000,
+    0 0 10px #cc1100,
+    0 0 22px #cc1100,
+    0 0 42px rgba(255,78,66,.55);
+  animation: glowBreath 5.5s ease-in-out infinite; /* weich statt kantig */
+  overflow:hidden;
 }
+
 .coming-soon::after{
   content:"";
   position:absolute; top:0; bottom:0;
-  left:-20%; width:20%;
-  background:linear-gradient(120deg, transparent 0%, rgba(255,255,255,.25) 50%, transparent 100%);
-  transform:skewX(-20deg);
-  animation:sweep 2.8s linear infinite;
+  left:-25%; width:22%;
+  background:linear-gradient(120deg, transparent 0%, rgba(255,255,255,.18) 45%, transparent 100%);
+  transform:skewX(-12deg);
+  animation:sweepSoft 3.8s ease-in-out infinite;
   pointer-events:none; mix-blend-mode:screen;
 }
 
-@keyframes glowPulse{
-  0%,100%{ text-shadow:0 0 4px #000, 0 0 6px #d0a85c, 0 0 12px #d0a85c, 0 0 22px rgba(208,168,92,.55); }
-  50%    { text-shadow:0 0 6px #000, 0 0 10px #ffae42, 0 0 22px #ffae42, 0 0 36px rgba(255,174,66,.85); }
+/* weichere "Atmung" statt Flackern */
+@keyframes glowBreath{
+  0%{
+    text-shadow:0 0 5px #000, 0 0 10px #cc1100, 0 0 22px #cc1100, 0 0 38px rgba(255,78,66,.45);
+  }
+  25%{
+    text-shadow:0 0 6px #000, 0 0 14px #e03a3a, 0 0 28px #e03a3a, 0 0 48px rgba(255,110,90,.65);
+  }
+  50%{
+    text-shadow:0 0 7px #000, 0 0 18px #ff4e42, 0 0 36px #ff4e42, 0 0 58px rgba(255,140,110,.85);
+  }
+  75%{
+    text-shadow:0 0 6px #000, 0 0 14px #e03a3a, 0 0 28px #e03a3a, 0 0 48px rgba(255,110,90,.65);
+  }
+  100%{
+    text-shadow:0 0 5px #000, 0 0 10px #cc1100, 0 0 22px #cc1100, 0 0 38px rgba(255,78,66,.45);
+  }
 }
-@keyframes sweep{
-  0%   { left:-25%; }
-  100% { left:115%; }
+
+/* weicher, weniger “kantiger” Schimmer-Sweep */
+@keyframes sweepSoft{
+  0%   { left:-30%; opacity:.65; }
+  50%  { left:115%; opacity:.35; }
+  100% { left:115%; opacity:0; }
 }
+
 
   </style>
 </head>
@@ -481,9 +500,9 @@ tr.rank-3 { background-image: linear-gradient(to right, rgba(205,127,50,.06), tr
     </div>
   </header>
 
+<h2 class="coming-soon">Season 2 – Coming Soon</h2>
+  
 <h2 class="season-header">Season 1</h2>
-
-  <h2 class="coming-soon">Season 2 – Coming Soon</h2>
 
 <div class="table-wrapper">
   <table>
@@ -933,6 +952,7 @@ document.getElementById('last-updated').textContent =
 
 
 </html>
+
 
 
 
